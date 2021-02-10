@@ -1,0 +1,72 @@
+\\192.168.50.220\Freshers2020-Trainees\SQL Server\SqlScripts\SqlScripts
+Agenda: Select all employee details given by Employee number
+SELECT * FROM Employee
+declare @EmpNo AS INTEGER;
+SET @EmpNo = 1002;
+SELECT * FROM Employee WHERE EmpNo = @EmpNo
+==================================================================
+Agenda: From Northwind database Employees table, select all employees whose region is null
+SELECT * FROM Employees where Region is null
+
+Agenda: From Northwind database Employees table, select all employees whose region is not null
+Logic 1: SELECT * FROM Employees where not(Region is null)
+Lofic 2: SELECT * FROM Employees where Region is not null
+==================================================================
+Task: Search for Northwind, and pubs databases and install them in your SQL Server database
+==================================================================
+Agedna: Discuss about group by clause - Show the number of products by category
+	Show CategoryId, CategoryName, NumberOfProductsByCategroy
+Example to use group by clause:
+	select c.CategoryID, c.CategoryName, Count(p.CategoryId) [Count Of Products]
+	from Categories as c inner join Products as p on c.CategoryID = p.CategoryID
+	group by c.CategoryID, c.CategoryName
+==================================================================
+Task: From Northwind database; join Categories, and Products tables and show below information.
+CategoryId, CategoryName, ProductId, ProductName, UnitPrice
+
+08-12-2020
+==================================================================
+Task: Use CTE and find the second highest salary of employee
+==================================================================
+-- Example to create function
+
+create function MyFirstFunction(@Param1 as integer) returns integer
+begin
+	declare @result as integer;
+	set @result = @Param1 * 100;
+	return @result;
+end;
+
+declare @myResult as integer;
+set @myResult = dbo.MyFirstFunction(60);
+print cast(@myResult as varchar(5));
+print @myResult;
+===================================================================
+Task: Create department(DeptNo, DName, Loc) table. Here, DeptNo SHOULD NOT be identity column.
+Now, create a function to insert Department details where DepartmentNumber should be populated without your intervention.
+Below is the example:
+insert into Department values(1, 'Accounting', 'New York');
+insert into Department values(2, 'Research', 'Dallas');
+
+insert into Department values(dbo.NextDeptNo(), 'Accounting','New York');
+insert into Department values(dbo.NextDeptNo(), 'Research','Dallas');
+===================================================================
+
+Working with Stored procedures:
+
+create procedure usp_CreateDepartment
+	@DeptName as nvarchar(50),
+	@Loc as nvarchar(50)
+as
+begin
+	insert into Department(DeptName, Loc) values (@DeptName, @Loc)
+end
+
+execute usp_CreateDepartment 'Marketing','Mumbai'
+====================================================================
+Task: Create stored procedure to insert records into Employee table
+====================================================================
+Task: Create stroed procedure to show Employee details
+====================================================================
+Task: Create stored procedure to update employee details
+====================================================================

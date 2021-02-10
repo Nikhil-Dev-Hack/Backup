@@ -1,0 +1,8 @@
+﻿http://www.html5rocks.com/en/tutorials/file/filesystem/#toc-requesting-quota
+
+http://blog.teamtreehouse.com/building-an-html5-text-editor-with-the-filesystem-apis
+
+http://www.w3.org/TR/file-system-api/
+
+=================
+Write article about selected file and its pic

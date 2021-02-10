@@ -1,0 +1,8 @@
+To install typescript compiler:
+D:\Path>npm install -g typescript
+
+To create new Angular project with the name: JavaScritPrimer
+D:\Path>ng new JavaScriptPrimer
+
+Agenda: Create function with no parameters.
+

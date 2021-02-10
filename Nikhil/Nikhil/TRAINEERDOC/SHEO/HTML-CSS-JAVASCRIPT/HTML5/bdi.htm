@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html />
+<html>
+<head>
+    <title>Bi-directional Isolation</title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    This is used to embed user generated text whose direction is not known. 
+    Like arabic, urdu.
+    <p>  Name: Age </p>
+    <p><bdi>Ram</bdi> : 50</p>
+    <p><bdi>Shyam</bdi> : 60</p>
+    <p><bdi>Some urdu</bdi>: 70</p>
+
+    If bdi tag is not supported, the last one will appear in browser like 
+
+    <p>: 70 Some urdu</p>
+</body>
+</html>

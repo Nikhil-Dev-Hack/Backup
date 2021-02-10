@@ -1,0 +1,62 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>HTML 5 video</title>
+    <style>
+        video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1000;
+            transform: translateX(-50%) translateY(-50%);
+            background: url('http://techfunda.com/Images/TechFunda.gif') no-repeat;
+            background-size: cover;
+        }
+        #content{
+            color:white;
+        }
+        #control{
+            position:fixed;
+            bottom:0%;
+            left:50%;
+        }
+    </style>
+</head>
+<body>
+    <video src="VideoIntro.mp4" height="300" width="400" 
+           id="video1" autoplay loop>
+        video is not supported.
+    </video>
+    <div id="content">
+        <h1>This is H1 tag</h1>
+        <p style="font-size:18px;">HTML5 video streaming. Most modern browser of desktop and even on mobile supports HTML5 video streaming out of the box provided your media files are also hosted on compatiable server. The most important point to remember here is to specify multiple media source files to support different browsers.</p>
+    </div>
+    <div id="control">
+        <input type="button" id="btnPause" onclick="PausePlay()" style="padding:20px;" value="Pause" />
+    </div>
+
+    <script>
+        var video = document.getElementById("video1");
+        var btn = document.getElementById("btnPause");
+        function PausePlay() {
+            if (video.paused) {
+                video.play();
+                btn.value = "Pause";
+            } else if (video.ended) {
+                video.currentTime = 0;
+                video.play();
+                btn.value = "Pause";
+            }
+            else {
+                video.pause();
+                btn.value = "Play";
+            }
+        }
+    </script>
+
+   </body>
+</html>

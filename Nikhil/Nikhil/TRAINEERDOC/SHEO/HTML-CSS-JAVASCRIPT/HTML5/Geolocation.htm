@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Geolocation </title>
+     <script type="text/javascript">
+
+         // SHOW LOCATION
+         function ShowMyLocation() {
+             if (navigator.geolocation) {
+                 navigator.geolocation.getCurrentPosition(SuccessCallback, FailureCallback);
+             } else {
+                 alert("Sorry, your browser doesn't support Geolocation.");
+             }
+         }
+
+         function SuccessCallback(position) {
+             document.location = 'http://maps.google.com/maps?q=' + position.coords.latitude + ',' + position.coords.longitude;
+         }
+
+         // GET LOCATION
+         function GetMyLocation() {
+             if (navigator.geolocation) {
+                 navigator.geolocation.getCurrentPosition(LocationCallback, FailureCallback);
+             } else {
+                 alert("Sorry, your browser doesn't support Geolocation");
+             }
+         }
+
+         function LocationCallback(position) {
+             document.getElementById('output').innerHTML = '<p>Latitude: ' + position.coords.latitude + '<br />' +
+                                                        'Longitude: ' + position.coords.longitude + '<br />' +
+                                                        'Accuracy: ' + position.coords.accuracy + '</p>';
+         }
+
+         // FAILURE 
+         function FailureCallback(error) {
+             alert('Sorry, an error occured - ' + error);
+         }
+
+     </script>
+</head>
+<body>
+    <input type="button" id="btnLoc" name="btnLoc" value="Show my location" onclick="ShowMyLocation()" />
+    <input type="button" id="btnGet" name="btnLoc" value="Get my location" onclick="GetMyLocation()" />
+    <output id="output" />
+</body>
+</html>

@@ -1,0 +1,95 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>HTML 5 input types</title>
+    <style>
+        input
+        {
+            margin:5px;
+        }
+    </style>
+</head>
+<body>
+    <form  action="InputTypesubmit.aspx" method="post" novalidate>
+        <fieldset>
+            <legend>Login</legend>Name:
+            <input type="text" id="myName" name="myName" required
+                   placeholder="Please enter your name"
+                   title="Please enter name" /> *
+            <br />
+            SSN: <input required pattern="[A-Za-z]{3}"
+                        title="3 alphabets characters only" autofocus />
+            <br />
+            Email:
+            <input type="email" name="myEmail" id="myEmail" required
+                   placeholder="Enter email" />
+            <br />
+            Url:
+            <input type="url" id="myUrl" name="myUrl" />
+            <br />
+            Color:
+            <input type="color" id="myColor" name="myColor"
+                   onchange="document.getElementsByTagName('body')[0].style.backgroundColor = this.value" />
+            <br />
+            Number :
+            <input type="number" name="myNumber1" id="myNumber1" />
+            <br />
+            Number with steps :
+            <input type="number" name="myNumber1" id="Number1" step="4" />
+            <br />
+            Number (1 to 10):
+            <input type="number" name="myNumber" id="myNumber" max="10" min="1" />
+            <br />
+            Month:
+            <input type="month" id="myMonth" name="myMonth" />
+            <br />
+            Date:
+            <input type="date" name="myDate" id="myDate" />
+            <br />
+            Datetime:
+            <input type="datetime" name="myDateTime" id="myDateTime" />
+            <br />
+            Time:
+            <input type="time" name="myDateTime" id="myDateTime" />
+            <br />
+            Datetime Local:
+            <input type="datetime-local" name="myDateTimeLocal" id="myDateTimeLocal" />
+            <br />
+            Week:
+            <input type="week" name="myWeek" required id="myWeek" />
+            <br />
+            Range:
+            <input type="range" id="myRange" name="myRange" min="0" max="50" step="2"
+                   value="25"
+                   onchange="rangeOutput.value = this.value" /> <output name="rangeOutput">0</output>
+            <br />
+            Select file:
+            <input type="file" id="myFiles" name="myFiles" multiple />
+            <br />
+
+            List items:
+            <input type="text" list="listForMyList" name="myList" id="myList" />
+
+            <datalist id="listForMyList">
+                <option value="1" />
+                <option label="Option 2" value="2" />
+                <option label="Option 3" value="3" />
+                <option label="Option 4" value="4" />
+                <option label="Option 5" value="5" />
+            </datalist>
+
+            <br />
+            <input type="submit" id="mySubmit" name="mySubmit" formaction="page1.aspx" />
+            <br />
+            Search <input type="search" name="searchT" id="searchT" />
+            <input type="submit" id="mySubmit" name="mySubmit" formaction="page2.aspx" />
+            <p>
+                <input type="text" autocomplete="off" />
+            </p>
+
+
+        </fieldset>
+
+    </form>
+</body>
+</html>

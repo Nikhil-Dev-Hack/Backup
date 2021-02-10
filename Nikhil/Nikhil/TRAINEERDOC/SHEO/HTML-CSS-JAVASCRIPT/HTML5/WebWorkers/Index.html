@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script>
+        var worker = new Worker("DoSomeHeavyWork.js");
+        worker.onmessage = function (e) {
+            document.getElementById("output1").innerHTML += e.data + "<br />";
+        };
+        worker.onerror = function (e) {
+            alert(e.message);
+        };
+
+        function StopWorker() {
+            worker.terminate(); // terminate the worker without waiting to complete
+        }
+
+    </script>
+</head>
+<body>
+    <p>Web workers do not block the browser UI and executes a script. However, web worker can't access the window object or any DOM element of the page.</p>
+    
+    <label id="output1"></label>
+    
+    <p><button onclick="StopWorker()">Stop Worker</button></p>
+
+    <p><button onclick="AlertMeFromOtherFile()">Call function from Other Script file</button></p>
+
+</body>
+</html>

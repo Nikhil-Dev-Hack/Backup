@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Drawing lines</title>
+    <meta charset="UTF-8" />
+
+    <script type="text/javascript">
+        function DrawLines() {
+
+            var context = document.getElementById("Canvas1").getContext("2d");
+            context.moveTo(50, 60);
+            context.lineTo(200, 100);
+            context.lineTo(200, 100);
+            context.lineWidth = 5;
+            context.strokeStyle = "red";
+            context.stroke();
+        }
+    </script>
+</head>
+<body>
+
+    <canvas id="Canvas1" width="300" height="200"
+            style="border:1px solid green;margin-left:100px;">
+        Canvas is not supported in your browser
+    </canvas>
+
+    <br /><br />
+    <input type="button" onclick="DrawLines()" value="Draw Line" />
+    <p>In this training, you will learn how to jump start writing code in HTML 5. You will learn HTML 5 structural, semantic, form tags, drawing on canvas, playing audio & video, storing data client side and building application that works client side. </p>
+</body>
+</html>

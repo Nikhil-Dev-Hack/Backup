@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html />
+<html>
+<head>
+    <title>Local and Session storage check</title>
+    <script src="../Scripts/ModernizrBuild.js" type="text/javascript" ></script>
+    <script type="text/javascript">
+function RunTest(){
+    var supp = "";
+    for (var i in window) {
+        alert(i);
+        break; //uncomment for complete loop
+        switch (i) {
+            case "sessionStorage":  
+                document.getElementById("session").value = "supported";
+                break;
+            case "localStorage":
+                document.getElementById("local").value = "supported";
+                break;
+        }
+    }
+
+
+    var url = "http://www.itfunda.com?a=434&b=5434";
+
+}
+
+function CheckWithModernizr() {
+    alert("Is Local storage supported : " + Modernizr.localstorage);
+    alert("Is Session storage supported : " + Modernizr.sessionstorage);
+}
+
+</script>
+</head>
+<body onload="RunTest()">
+
+    <div>Session Storage: <output id="session">not supported</output></div>
+    <div>Local Storage: <output id="local">not supported</output></div>
+
+    <input type="button" id="bt" onclick="CheckWithModernizr()" value="Check with Modernizr" />
+
+</body>
+</html>

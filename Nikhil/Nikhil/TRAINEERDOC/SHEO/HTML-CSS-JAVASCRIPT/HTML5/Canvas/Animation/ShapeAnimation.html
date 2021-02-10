@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Animation using Canvas shapes</title>
+</head>
+<body>
+    <div style="background-color:white;">
+        <canvas id="canvas1" width="400" height="400" style="border:1px solid #c0c0c0;"></canvas>
+    </div>
+    <script>
+        var canvas, context, toggle;
+
+        function Initialize() {
+            context = document.getElementById("canvas1").getContext('2d');
+        }
+
+        function AnimateNow() {
+            requestAnimationFrame(AnimateNow);
+            DrawObject();
+        }
+
+        function DrawObject() {
+
+            var time = new Date().getTime() * 0.002;
+
+            var x = Math.sin(time) * 150 + 200;
+
+            var y = Math.cos(time * 0.9) * 150 + 200;
+
+            toggle = !toggle;
+
+            context.beginPath();
+
+            //context.fillStyle = toggle ? 'red' : 'green';
+
+            if (toggle) {
+                context.fillStyle = "red";
+                context.arc(x, y, 5, 0, Math.PI * 2, true);
+            }
+            else {
+                context.fillStyle = "green";
+                context.fillRect(x, y, 10, 10);
+            }
+            context.closePath();
+            context.fill();
+
+        }
+
+        Initialize();
+        AnimateNow();
+
+
+    </script>
+</body>
+</html>

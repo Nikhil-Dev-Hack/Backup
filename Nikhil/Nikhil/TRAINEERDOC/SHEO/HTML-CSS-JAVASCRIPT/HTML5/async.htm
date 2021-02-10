@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html />
+
+<html>
+<head>
+    <title></title>
+    
+    <script src="asyncMyJavaScript.js" async onload="GreetUser()"></script>
+    
+    <script defer src="asyncMyJavaScriptAnother.js"></script>
+
+</head>
+<body>
+    
+    <h1>Hello hello hello, this is async attribute of script element.</h1>
+    
+    async - The script downloads asynchrnously while the page continue to parse.
+
+    <h2>Defer</h2>
+    The script is executed when the page is finished parsing.
+
+    <button onclick="SometOtherFunction()">Click me to test.</button>
+
+</body>
+</html>

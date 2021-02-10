@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html />
+
+<html>
+<head>
+    <title>requestAnimationFrame demo</title>
+    <style type="text/css">
+
+div { position: absolute; left: 10px; top:100px; padding: 50px;
+  background: crimson; color: white }
+
+</style>
+</head>
+<body>
+    This is an alternative of setTimeout or setInterval of javascript.
+    <h3>Benefit:</h3>
+    <ol>
+        <li>60 frames per second speed.</li>
+        <li>Animation in inactive browser tab stops.</li>
+    </ol>
+    
+    <p>Click the box to stop it</p>
+
+  <div id="divAnimate">Hello there.</div>
+   
+    <script type="text/javascript">
+        // global variables 
+        var elm = document.getElementById("divAnimate");
+        var handle = 0;
+        var count = 0;
+
+        AnimateNow();  // call animation frame to start
+
+        function AnimateNow() {
+            elm.style.left = count++ + "px";
+            elm.style.top = count++ + "px";
+            handle = window.requestAnimationFrame(AnimateNow);
+        }
+
+        // click the box to stop the animation 
+        document.getElementById("divAnimate").addEventListener("click", function () {
+            if (handle) {
+                // alert(handle);
+                window.cancelAnimationFrame(handle);
+            }
+        }, false);
+      </script>
+
+</body>
+</html>

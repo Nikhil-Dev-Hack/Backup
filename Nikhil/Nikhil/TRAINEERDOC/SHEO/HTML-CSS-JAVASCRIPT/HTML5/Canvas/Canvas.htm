@@ -1,0 +1,64 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <style>
+        body
+        {
+            margin: 0px;
+            padding: 0px;
+        }        
+        #myCanvas
+        {
+            border: 1px solid #9C9898;
+        }
+    </style>
+    <script type="text/javascript">
+        function drawTextAlongArc(context, str, centerX, centerY, radius, angle) {
+
+            if (Modernizr.canvas) {
+                
+            }
+            context.save();
+            context.translate(centerX, centerY);
+            context.rotate(-1 * angle / 2);
+            context.rotate(-1 * (angle / str.length) / 2);
+            for (var n = 0; n < str.length; n++) {
+                context.rotate(angle / str.length);
+                context.save();
+                context.translate(0, -1 * radius);
+                var char = str[n];
+                context.fillText(char, 0, 0);
+                context.restore();
+            }
+            context.restore();
+        }
+
+        window.onload = function () {
+            var canvas = document.getElementById("myCanvas");
+            var context = canvas.getContext("2d");
+
+            context.font = "30pt Calibri";
+            context.textAlign = "center";
+            context.fillStyle = "blue";
+            context.strokeStyle = "blue";
+            context.lineWidth = 4;
+
+            var centerX = canvas.width / 2;
+            var centerY = canvas.height - 30;
+            var angle = Math.PI * 0.8; // radians
+            var radius = 150;
+            // drawTextAlongArc(context, "Sheo Narayan", centerX, centerY, radius, angle);
+
+            // draw circle underneath text
+            context.arc(centerX, centerY, radius - 10, 0, 2 * Math.PI, false);
+            context.stroke();
+        };
+
+    </script>
+</head>
+<body onmousedown="return false;">
+    <canvas id="myCanvas" width="578" height="250">
+        Sorry, your browser doesn't support Canvas element.
+    </canvas>
+</body>
+</html>

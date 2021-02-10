@@ -1,0 +1,36 @@
+﻿What is SVG?
+=============
+As per W3C, SVG is a modularized language for describing two-dimensional vector and mixed vector/raster graphics in XML.
+
+What is vector format?
+---------------------------
+Vector format is a program that draws a bitmap. 
+
+More details on SVG: http://www.w3.org/TR/SVG/
+SVG or Canvas - http://dev.opera.com/articles/view/svg-or-canvas-choosing-between-the-two/
+
+Disadvantage of Canvas
+=========================
+Canvas is a bitmap graphic that can't be resized as the SVG graphics can be resized based on the window size.
+Graphics created on Canvas is not part of the DOM so it can't be detected using javascript if needed.
+
+Advantage of Canvas
+====================
+Canvas is faster, good for games, preparing charts etc.
+
+Parameters
+================
+x - x coordinates
+y - y coordinates
+rx - x axis radius (in eclipse)
+ry - y axis raidus (in eclipse)
+cx - x axis coorinate of the center of the circle
+cy - y axis coordinate of the center of the circle
+x1 - x axis coordinate of the start of the line
+y1 - y axis coordinate of the start of the line
+x2 - x axis coordinate of the end of the line
+y2 - y axis coordinate of the end of the line
+
+More on SVG animation: http://www.w3.org/TR/SVG/animate.html
+
+Animation type: rotate, scale, skewX, skewY, translate

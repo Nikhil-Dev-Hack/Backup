@@ -1,0 +1,43 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Text using Canvas</title>
+    <script type="text/javascript" src="../Scripts/ModernizrBuild.js"></script>
+
+   <script type="text/javascript">
+       function DrawShapes() {
+           if (Modernizr.canvastext) {
+               
+               var context = document.getElementById('myCanvas')
+                   .getContext('2d');
+
+               context.strokeStyle = "green";
+
+               context.fillStyle = "Red";
+
+               context.font = "bold 60px 'Verdana'";
+
+               context.textAlign = "center";
+
+               context.lineWidth = "4";
+
+               context.lineJoin = "round";
+
+               context.fillText("TollPlus", 250, 140);
+
+               context.strokeText("TollPlus", 254, 144);
+           }
+           else {
+               alert("HTML 5 : Canvas is not supported");
+           }
+       }   
+   </script>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="250" style="border:1px solid green;">
+    </canvas>
+
+    <br />
+    <input type="button" onclick="DrawShapes()" value="Draw Text" />
+</body>
+</html>

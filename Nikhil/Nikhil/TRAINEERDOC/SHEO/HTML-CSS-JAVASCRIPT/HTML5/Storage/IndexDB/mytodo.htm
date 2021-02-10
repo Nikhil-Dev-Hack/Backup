@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+      <title>IndexedDB</title>
+    <style>
+      body {
+        color: #222;
+        font: 14px Arial;
+      }
+      
+      body a {
+        color: #3D5C9D;
+        text-decoration: none;
+      }
+
+    </style>
+      <script>
+
+          
+          var itfunda = {};
+          var isEdit = false;
+          var keyPathToEdit = '';
+
+          window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB;
+
+          if ('webkitIndexedDB' in window) {
+              window.IDBTransaction = window.webkitIDBTransaction;
+              window.IDBKeyRange = window.webkitIDBKeyRange;
+          }
+
+          itfunda.indexedDB = {};
+          itfunda.indexedDB.db = null;
+
+          itfunda.indexedDB.onerror = function (e) {
+              alert("Error occured " + e);
+          };
+
+          itfunda.indexedDB.open = function () {
+              var version = 1;
+              var request = indexedDB.open("HTML5TrainingDatabase", version);
+
+              // We can only create Object stores in a versionchange transaction.
+              request.onupgradeneeded = function (e) {
+                  var db = e.target.result;
+
+                  // A versionchange transaction is started automatically.
+                  e.target.transaction.onerror = itfunda.indexedDB.onerror;
+
+                  if (db.objectStoreNames.contains("PersonalDetails")) {
+                      db.deleteObjectStore("PersonalDetails");
+                  }
+
+                  var store = db.createObjectStore("PersonalDetails", { keyPath: "timeStamp" });
+
+                  var titleIndex = store.createIndex("OnAge", "Age", { unique: true }); // { autoIncrement : true }
+                  var authorIndex = store.createIndex("OnName", "Name");
+              };
+
+              request.onsuccess = function (e) {
+                  itfunda.indexedDB.db = e.target.result;
+                  itfunda.indexedDB.ListAllRecords();
+              };
+
+              request.onerror = itfunda.indexedDB.onerror;
+          };
+
+          itfunda.indexedDB.UpdateRecord = function(){
+              var db = itfunda.indexedDB.db;
+              var trans = db.transaction(["PersonalDetails"], "readwrite");
+              var store = trans.objectStore("PersonalDetails");
+
+              var request = store.get(keyPathToEdit);
+
+              request.onsuccess = function(e)
+              {
+                  var data = request.result;
+
+                  data.Name = document.getElementById("txtName").value;
+                  data.Address = document.getElementById("txtAddress").value;
+                  data.Age = document.getElementById("txtAge").value;
+
+                  var requestUpdate = store.put(data);
+
+                  requestUpdate.onsuccess = function(ee)
+                  {
+                      document.getElementById("output1").innerHTML = "Record updated successfully !";
+                      document.getElementById("btnSubmit").value = "Add";
+                      itfunda.indexedDB.ListAllRecords();
+                      isEdit = false;
+                  };
+                  requestUpdate.onerror = itfunda.indexedDB.onerror;
+              };
+
+          };
+
+          itfunda.indexedDB.AddRecord = function () {
+              var db = itfunda.indexedDB.db;
+              var trans = db.transaction(["PersonalDetails"], "readwrite");
+              var store = trans.objectStore("PersonalDetails");
+
+              if (isEdit) {
+                  itfunda.indexedDB.UpdateRecord();
+                  return;
+              }
+
+              var data = {
+                  "Name": document.getElementById("txtName").value,
+                  "Address": document.getElementById("txtAddress").value,
+                  "Age": document.getElementById("txtAge").value,
+                  "timeStamp": new Date().getTime()
+              };
+
+              var request = store.put(data);
+              request.onsuccess = function (e) {
+                  ResetValues(); // reset textbox value
+                  itfunda.indexedDB.ListAllRecords();
+              };
+
+              trans.oncomplete = function () {
+                  document.getElementById("output1").innerHTML = "Record added successfully !";
+                  // db.close(); // database connection can be closed.
+              };
+
+              request.onerror = function (e) {
+                  alert("Error Adding record: ", request.error);
+              };
+          };
+
+          itfunda.indexedDB.DeleteRecord = function (id) {
+              var db = itfunda.indexedDB.db;
+              var trans = db.transaction(["PersonalDetails"], "readwrite");
+              var store = trans.objectStore("PersonalDetails");
+
+              var request = store.delete(id);
+
+              request.onsuccess = function (e) {
+                  itfunda.indexedDB.ListAllRecords();
+              };
+
+              request.onerror = itfunda.indexedDB.onerror;
+          };
+
+          itfunda.indexedDB.SetInEditMode = function (id) {
+              
+              var db = itfunda.indexedDB.db;
+              var trans = db.transaction(["PersonalDetails"], "readwrite");
+              var store = trans.objectStore("PersonalDetails");
+
+              var cursorRequest = store.get(id);
+              
+              cursorRequest.onsuccess = function () {
+                  var result = cursorRequest.result;
+                  if (result) {
+                      document.getElementById("txtName").value = result.Name;
+                      document.getElementById("txtAddress").value = result.Address;
+                      document.getElementById("txtAge").value = result.Age;
+
+                      keyPathToEdit = id;
+                      document.getElementById("btnSubmit").value = "Update";
+                      isEdit = true; // flag to trigger update function
+                  };
+              };
+
+              cursorRequest.onerror = itfunda.indexedDB.onerror;
+          };
+          
+
+          itfunda.indexedDB.SearchRecord = function () {
+              // reset the list
+              document.getElementById("lists").innerHTML = "";
+
+              var db = itfunda.indexedDB.db;
+              // var trans = db.transaction(["PersonalDetails"], "readwrite");
+              var trans = db.transaction(["PersonalDetails"], "readonly");
+              var store = trans.objectStore("PersonalDetails");
+              var index = store.index("OnAge");
+
+              var cursorRequest = index.get(document.getElementById("txtAgeS").value);
+
+              cursorRequest.onsuccess = function () {
+                  var result = cursorRequest.result;
+                  if (result) {
+                      // A match was found.
+                      RenderRecord(result);
+                  }
+              };
+              document.getElementById("output1").innerHTML = "";
+              cursorRequest.onerror = itfunda.indexedDB.onerror;
+          };
+
+          itfunda.indexedDB.ListAllRecords = function () {
+              // reset the list
+              document.getElementById("lists").innerHTML = "";
+
+              var db = itfunda.indexedDB.db;
+              var trans = db.transaction(["PersonalDetails"], "readonly");
+              var store = trans.objectStore("PersonalDetails");
+
+              // Get everything in the store;
+              var keyRange = IDBKeyRange.lowerBound(0);
+              var cursorRequest = store.openCursor(keyRange);
+
+              cursorRequest.onsuccess = function (e) {
+                  var result = e.target.result;
+                  if (result) {
+                      RenderRecord(result.value);
+                      result.continue();
+                  };
+              };
+
+              cursorRequest.onerror = itfunda.indexedDB.onerror;
+          };
+
+          function RenderRecord(row) {
+              var lists = document.getElementById("lists");
+              var li = document.createElement("li");
+              var a = document.createElement("a");
+              var t = document.createTextNode(row.Name + ' | ' + row.Address + ' | ' + row.Age + ' | ' + row.timeStamp);
+
+              a.addEventListener("click", function () {
+                  itfunda.indexedDB.DeleteRecord(row.timeStamp);
+              }, false);
+
+              a.href = "#";
+              a.textContent = " [Delete]";
+              li.appendChild(t);
+              li.appendChild(a);
+
+              // edit link
+              a = document.createElement("a");
+              a.addEventListener("click", function () {
+                  itfunda.indexedDB.SetInEditMode(row.timeStamp);
+              }, false);
+
+              a.href = "#";
+              a.textContent = " [Edit]";
+              li.appendChild(a);
+
+              lists.appendChild(li);
+          }
+
+          function InsertRecord() {
+              itfunda.indexedDB.AddRecord();
+          }
+
+          function Search()
+          {
+              itfunda.indexedDB.SearchRecord();
+          }
+
+          function ResetValues()
+          {
+              document.getElementById("txtName").value = "";
+              document.getElementById("txtAddress").value = "";
+              document.getElementById("txtAge").value = "";
+          }
+
+          function Initialize() {
+              itfunda.indexedDB.open();
+          }
+
+          window.addEventListener("DOMContentLoaded", Initialize, false);
+
+      </script>
+  </head>
+  <body>
+      <form action="mytodo.htm" method="post" id="form1" name="form1">
+          <fieldset>
+              <legend>Personal Details Management System</legend>
+              <p>
+                  Name: <input type="text" id="txtName" name="txtName" placeholder="What is your name?" required />
+                  Address: <input type="text" id="txtAddress" name="txtAddress" placeholder="Address?" required />
+                  Age: <input type="text" id="txtAge" size="5" name="txtAge" placeholder="Age?" required />
+                  <input type="submit" id="btnSubmit" name="btnSubmit" value="Add" onclick="InsertRecord(); return false;">
+                  <input type="reset" value="Reset" id="btnReset" name="btnReset" />
+              </p>
+          </fieldset>
+
+          <fieldset>
+              <legend>Search details based on Age</legend>
+              <p>
+                  Age: <input type="text" id="txtAgeS" size="5" name="txtAgeS" placeholder="Age?" required />
+                  <input type="submit" id="btnSubmitS" name="btnSubmitS" value="Search" onclick="Search(); return false;">
+              </p>
+          </fieldset>
+
+          <output id="output1" style="color:green;"></output>
+      </form>
+
+
+    <ul id="lists"></ul>
+
+
+  </body>
+</html>​

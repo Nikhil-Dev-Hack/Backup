@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html />
+
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <script type="text/javascript">
+        function GetData() {
+            alert(document.getElementById("div1").innerHTML);
+        }
+    </script>
+    
+</head>
+<body>
+   <p>This is some text.</p>
+
+   <div id="div1" style="background-color:#efefef;padding:50px;height:150px;">
+   <ul class="myGallery" contenteditable="true">
+        <li>Ram</li>
+        <li>Shyam</li>
+        <li>Gita</li>
+        <li>Mohan</li>
+   </ul>
+   </div>
+
+   <button onclick="GetData()">Get modified data</button>
+   <p>This is some text.</p>
+
+</body>
+</html>

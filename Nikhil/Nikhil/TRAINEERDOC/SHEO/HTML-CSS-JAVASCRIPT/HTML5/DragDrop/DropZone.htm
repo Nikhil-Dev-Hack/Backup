@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html />
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <script type="text/javascript">
+
+        function DragMe(source, e) {
+            e.dataTransfer.setData('Text', source.id);
+        }
+
+        function DropElement(target, e) {
+            var id = e.dataTransfer.getData('Text');
+
+            target.appendChild(document.getElementById(id));
+            // target.innerHTML = target.innerHTML + "<br />";
+        }
+
+    </script>
+</head>
+<body>
+    <div>
+        <img id="img1" src="../images/dropdown.jpg" draggable="true" alt=""  />
+        <img id="img2" src="../Canvas/button1.gif" draggable="true" alt="" />
+        <img id="img3" src="../images/HTML5ITFC.jpg" alt="" draggable="true"   />
+    </div>
+
+    <div dropzone="" style="width:300px;height:300px;border:1px dashed #808080;">
+    </div>
+
+</body>
+</html>

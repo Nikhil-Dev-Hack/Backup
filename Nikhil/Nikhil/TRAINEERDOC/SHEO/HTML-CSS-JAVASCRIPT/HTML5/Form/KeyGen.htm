@@ -1,0 +1,17 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>HTML 5 input types</title>
+    <script src="../Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+    It is a secure way to authenticate the user.
+    <p>    KeyGen generates private and public key. Private key is stored locally and public key is ent to the server and can be used to generate client certificate.</p>
+    <form action="KeyGenSubmit.aspx" method="post">
+       <p>Username: <input type="text" name="username" /></p>
+        <p>Password: <input type="text" name="password" /></p>
+        <keygen name="secKey" />
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+</html>

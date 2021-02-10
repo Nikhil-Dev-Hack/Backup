@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html />
+
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8" />
+
+    <script type="text/javascript">
+
+        window.onload = function () {
+            var iframeWin = document.getElementById("iframePage").contentWindow;
+            var form = document.getElementById("form1");
+            var myMessage = document.getElementById("txt1");
+
+            form.onsubmit = function () {
+                // can send to any domain if 2nd paramter is *, 
+                // otherwise specify the domain name like http://www.mydomain.com
+                iframeWin.postMessage(myMessage.value, "*");
+                return false;
+            };
+        };
+
+    </script>
+
+
+</head>
+<body>
+
+    <form id="form1" name="form1" method="post" action="">
+        <fieldset>
+            <legend>Send message</legend>
+            <p> <input type="text" id="txt1" name="txt1" size="50" required placeholder="Write your message to send" /></p>
+            <p><button id="btnSend">Send message</button></p>
+        </fieldset>
+   
+        <p>&nbsp;</p>
+    </form>
+
+    <iframe id="iframePage" src="iFramePage.htm"></iframe>
+
+
+</body>
+</html>

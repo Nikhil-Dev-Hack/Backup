@@ -1,0 +1,2 @@
+﻿Adding removing xml attribute from XML File in .NET - 
+http://www.dotnetfunda.com/articles/show/425/adding-removing-xml-attribute-from-xml-file-in-net

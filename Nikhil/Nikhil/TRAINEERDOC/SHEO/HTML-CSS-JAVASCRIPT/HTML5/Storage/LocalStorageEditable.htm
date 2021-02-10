@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html />
+<html>
+<head>
+    <title>Demo of Content Editable - Local storage</title>
+    <meta charset="UTF-8" />
+    <script type="text/javascript">
+
+        //var editable = document.getElementById('editableList');
+        //addEvent(editable, 'blur', function () {
+        //    localStorage.setItem('contenteditable', this.innerHTML);
+        //    document.designMode = 'off';
+        //});
+        //addEvent(editable, 'focus', function () {
+        //    document.designMode = 'on';
+        //});
+
+        //if (localStorage.getItem('contenteditable')) {
+        //    editable.innerHTML = localStorage.getItem('contenteditable');
+        //}
+
+        function SetIntoLocalStorage()
+        {
+            localStorage.setItem("ThisEditable", document.getElementById("editableList").innerHTML);
+            document.designMode = 'off';
+        }
+
+        function GotFocus()
+        {
+            document.designMode = 'on';
+        }
+
+        function GetData()
+        {
+            alert(localStorage.getItem('ThisEditable'));
+        }
+
+        function GetDefaultData()
+        {
+            if (localStorage.getItem('ThisEditable') != null)
+            {
+                document.getElementById("editableList").innerHTML = localStorage.getItem('ThisEditable');
+            }
+        }
+
+    </script>
+</head>
+<body onload="GetDefaultData()">
+    <p>
+        This is some text.</p>
+    <div contenteditable="true" id="editableList" onblur="SetIntoLocalStorage()" 
+         onfocus="GotFocus()"
+         style="background-color: #efefef; padding: 50px; height: 150px;">
+        <ul class="myGallery" contenteditable="true">
+            <li>Ram</li>
+            <li>Shyam</li>
+            <li>Gita</li>
+            <li>Mohan</li>
+        </ul>
+    </div>
+    <button onclick="GetData()">Get modified data</button>
+    <p>
+        This is some text.</p>
+</body>
+</html>

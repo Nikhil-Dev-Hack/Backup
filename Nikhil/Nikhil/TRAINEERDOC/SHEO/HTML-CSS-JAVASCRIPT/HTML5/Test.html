@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+
+        body {
+            background-image: url('/images/bittergourd.jpg'), url('/images/PumpkinRound.jpg');
+            background-position: left, right;
+            background-repeat: no-repeat;
+            
+        }
+
+        ul.myGallery li {
+            float: left;
+            list-style: none;
+            border: 1px solid #c0c0c0;
+            -webkit-transition: -webkit-transform 0.5s ease-in-out;
+            -moz-transition: -moz-transform 0.5s ease-in-out;
+            transition: transform 0.5s ease-in-out;
+        }
+
+            ul.myGallery li:hover {
+                -webkit-transform: scale(1.5) skew(-10deg, 45deg);
+                -moz-transform: scale(1.5) skew(-10deg, 45deg);
+                -o-transform: scale(1.5) skew(-10deg, 45deg);
+                transform: scale(1.5) skew(-10deg, 45deg);
+                -webkit-box-shadow: 4px 4px 10px red;
+                -moz-box-shadow: 4px 4px 10px red;
+                box-shadow: 4px 4px 10px red;
+            }
+    </style>
+
+</head>
+<body>
+    <br /><br />
+    <div style="background-color:#efefef;padding:50px;height:150px;width:400px;margin-left:200px;">
+        <ul class="myGallery">
+            <li><img src="/images/bittergourd.jpg" /></li>
+            <li><img src="/images/PumpkinRound.jpg" /></li>
+            <li><img src="/images/Pumpkins.jpg" /></li>
+        </ul>
+    </div>
+</body>
+</html>

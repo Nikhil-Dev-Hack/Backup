@@ -1,0 +1,49 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Capture a snap in HTML5 with WebCam</title>
+
+</head>
+<body>
+
+    <video id="video1" width="400" height="300" autoplay></video>
+    <input type="button" id="btnSnap" value="Snap" onclick="SetImage()" />
+    <div>
+        <canvas id="canvas1" width="400" height="300"></canvas>
+    </div>
+
+    <script type="text/javascript">
+        
+        window.addEventListener("DOMContentLoaded", function () {
+            // get the elements to capture the video
+            context = document.getElementById("canvas1").getContext("2d");
+
+            video = document.getElementById("video1");
+            var videoObj = { "video": true };
+            var errBack = function (error) {
+                console.log("Video capture error: ", error.code);
+            };
+
+
+            if (navigator.getUserMedia) { // Standard to check whether webcam is allowed
+                navigator.getUserMedia(videoObj, function (stream) {
+                    video.src = stream;
+                    video.play();
+                }, errBack);
+            } else if (navigator.webkitGetUserMedia) { // WebKit-prefixed for webkit browser such as Chrome
+                navigator.webkitGetUserMedia(videoObj, function (stream) {
+                    video.src = window.webkitURL.createObjectURL(stream);
+                    video.play();
+                }, errBack);
+            }
+        }, false);
+
+        function SetImage() {
+            context.drawImage(video, 0, 0, 400, 300);
+        }
+
+
+    </script>
+
+</body>
+</html>

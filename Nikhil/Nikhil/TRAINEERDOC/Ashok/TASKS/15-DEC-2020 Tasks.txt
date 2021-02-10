@@ -1,0 +1,23 @@
+
+01. WAP in Typescript to show 'This is my first typescript exercise'e using function, and fat arrow.
+
+02. WAP in Typescript to find the difference between two numbers
+
+03. WAP in Typescript to find the product of two numbers
+
+04. WAP in Typescript to find the difference between two dates
+
+05. In department-example-01.ts file, convert Display() function to fat arrow function.
+
+06. Create employee class and print employee details. Use fat arrow to display employee details.
+
+07. Learn about dynamic in c# and prepare notes for the same.
+
+08. Google search: What is the difference between string, and String in typescript. Prepare notes for the same.
+
+09. Create Employee (id, name, salary, deptName) class in typescript. Show Employee details using fat arrow operator.
+==========================================ADO.NET=====================================================
+Task1: Read all Employee records from database and print on the console.
+Task2: Show single employee details for the parameter passed in.
+Task3: Get Emplyee name for the employee number passed in as a parameter
+Task4: In Visual Studio, inside DataSetDemo.cs file, one task has been given. Work on that as well.

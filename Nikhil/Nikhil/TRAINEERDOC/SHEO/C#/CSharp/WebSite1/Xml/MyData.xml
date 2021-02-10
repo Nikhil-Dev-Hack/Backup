@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ArrayOfCategory>
+  <Category>
+    <CategoryId>1</CategoryId>
+    <CategoryName>.NET Technologies</CategoryName>
+  </Category>
+  <Category>
+    <CategoryId>2</CategoryId>
+    <CategoryName>Java Technologies</CategoryName>
+  </Category>
+  <Category>
+    <CategoryId>4</CategoryId>
+    <CategoryName>Open Stack</CategoryName>
+  </Category>
+</ArrayOfCategory>

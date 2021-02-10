@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Working with images in Canvas</title>
+</head>
+<body>
+    <div style="padding:50px;border:1px solid red;">
+        <video id="video1" controls autoplay width="270">
+            <source src="../Video/VideoIntro.mp4" type="video/mp4" />
+        </video>
+    </div>
+
+    <div style="padding:50px;">
+        <canvas id="myCanvas" width="300" height="200" style="border:1px solid #d3d3d3;"></canvas>
+    </div>
+
+    <script type="text/javascript">
+
+        var context = document.getElementById("myCanvas").getContext('2d');
+        var video = document.getElementById("video1");
+
+        video.addEventListener('play', function () {
+            var i = window.setInterval(
+                function () {
+                    context.drawImage(video, 0, 0, 270, 150);
+                }, 1000);
+        }, false);
+
+    </script>
+
+</body>
+</html>

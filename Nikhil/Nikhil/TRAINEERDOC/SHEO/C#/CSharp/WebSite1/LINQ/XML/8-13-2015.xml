@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Customers>
+  <Customer FirstName="Jay" LastName="Shankarji" Age="30" />
+  <Customer FirstName="Jayesh" LastName="Makhi" Age="25" />
+  <Customer FirstName="Ramesh" LastName="Lakhani" Age="30" />
+</Customers>

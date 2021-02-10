@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    
+</head>
+<body>
+    <canvas id="canvas1" width="500" height="500"></canvas>
+
+    <script>
+        var c = document.getElementById("canvas1");
+        var ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.moveTo(20, 20);
+        // bezierCurveTo(first x point, first y point, second x point, second y point, x ending point, y ending point)
+        ctx.bezierCurveTo(20, 100, 200, 100, 200, 20);
+        ctx.stroke();
+    </script>
+
+</body>
+</html>

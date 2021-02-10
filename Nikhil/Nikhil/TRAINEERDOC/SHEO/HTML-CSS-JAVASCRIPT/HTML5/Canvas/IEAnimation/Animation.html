@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<!--
+// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+//
+// Copyright (c) Microsoft Corporation. All rights reserved
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="X-UA-Compatible" content="IE=9" >
+
+<head>
+
+<style>
+span {left: 600px; position: absolute; opacity:.75}
+.Inc {top: 50px}
+.Dcr {top: 80px}
+.msg {top:110px}
+.IncTrvl {top: 160px}
+.DcrTrvl {top: 190px}
+.reverse {top: 220px}
+.butterfly {top: 270px}
+.parabola {top: 300px}
+button {width: 250px}
+</style>	
+
+
+<script language="javascript" type="text/javascript"> 	
+	
+	
+var myCanvas; // canvas object
+var	ctx; 	  // canvas context
+
+// HTML objects which we need to access from script
+var stopRotateObj;
+var	myLabel ;
+var	reverseButton ;
+var	curve ;
+var	parabola;
+var img;
+
+// Global Variables which control animation effects
+	
+var rotoSpeed = 50;
+var distanceCurve = 0
+var x=0, y=0;
+var distanceCurve1=0;
+var amplifier=.05;
+	
+// size of the image 
+var imgSize = {imgWidth: 100, imgHeight: 100};
+	
+var isRotating = true;
+var a = .007; // parametner for the parabola: y = a * x * x
+var translated = false; // keep track if coordinate system was changed to accomodate parabola
+	
+var lastFrameTime = 0;		
+
+// when window loads, start exectuting out Main
+window.onload = Main;
+	
+function Main() {
+
+	// get each HTML element which we will need to access
+	myCanvas = document.getElementById("myCanvas");
+	stopRotateObj = document.getElementById("btnStopRotate");
+	myLabel = document.getElementById("label");
+	reverseButton = document.getElementById("reverse");
+	curve = document.getElementById("curve");
+	parabola = document.getElementById("parabola");
+	
+	// set default value for Butterfly curve
+	curve.checked=true;
+	
+	if (myCanvas.getContext) {
+		ctx = myCanvas.getContext("2d");
+		img = new Image();
+		
+		// load image to canvas
+		// when image is loaded start animation loop
+		// to achieve 60 FPS animation we need to call draw function 1000 msec / 60 fps ~ 16
+		img.addEventListener("load", function() {
+						
+			lastFrameTime = new Date().getTime();
+			setInterval(drawTimeBasedCurve, 16);
+		}, false);
+		
+		img.src = "IELogo.png";
+		//ctx.save();
+
+	}
+}
+
+
+function drawTimeBasedCurve() {
+	var Curve, 
+		dt;
+	
+	// time since last frame - delta time
+	var now = new Date().getTime();			
+	dt = (now - lastFrameTime) / 1000;
+	lastFrameTime = now;
+	
+	if (curve.checked) {
+		// we are drawing butterfly curve
+		// calculate parameteric curve per http://en.wikipedia.org/wiki/Butterfly_curve_(transcendental)
+		// we use time based animation, so distance to move object is product of speed (rotoSpeed) and delta time since last frame in radians
+		
+		distanceCurve += rotoSpeed * Math.PI / 180 * dt ;
+		Curve = Math.pow (Math.E, Math.cos (distanceCurve) ) - 2* Math.cos (4*distanceCurve) - Math.pow (Math.sin (distanceCurve/12), 5)  ;	
+		x  = 100 * Math.sin(distanceCurve) * Curve +300;
+		y  = 100 * Math.cos(distanceCurve) * Curve + 200;
+	}
+	else {
+		// we are drawing parabolic curve				
+		x = x + 2 * rotoSpeed * dt ;
+		y =   a * x * x ;
+	
+		// if we drawing object based on coordinate X which is visible on the screen
+		// corresponding Y could be off screen
+		// we need calculate visiable Y and start from it
+		if  ( y > ctx.canvas.height )
+			x =   -Math.sqrt(ctx.canvas.height / a );
+
+	}
+	if (isRotating) {
+		
+		// this is a typical tranform loop which makes image rotate while moving
+		ctx.save();
+		ctx.translate (x + imgSize.imgWidth / 2, y + imgSize.imgHeight / 2);
+		ctx.rotate (distanceCurve1);				
+		distanceCurve1 += amplifier;
+		ctx.drawImage(img, -imgSize.imgWidth / 2, -imgSize.imgHeight / 2, imgSize.imgWidth, imgSize.imgHeight);
+		ctx.restore();
+	
+	}
+	else 
+		ctx.drawImage(img, x, y, imgSize.imgWidth, imgSize.imgHeight);
+		
+	// make images on the screen vanish by applying transparent background on each iteration
+	ctx.fillStyle = 'rgba(200,200,200,.05)';
+	
+	// these coordinates will work for translated canvas used in parabola
+	ctx.fillRect(-ctx.canvas.width/2, 0, 2*ctx.canvas.width, ctx.canvas.height);
+	
+	// reset distance curve 
+	if (distanceCurve > 2*Math.PI)	{
+			distanceCurve = 0;
+	}
+	
+	// a very simplistic way to measure who long it took to finish render loop
+	setInnerText ("Time to render one frame: " +   (new Date().getTime() - now) + " msec", myLabel);
+
+}
+	
+	function setInnerText (myText, obj)
+	{
+		if (obj.textContent)
+			obj.textContent = myText;
+		else
+			// fallback 
+			obj.innerText = myText;
+	}
+	
+	function stopRotate() {
+		var myText;		
+		if (isRotating)
+			myText = "Start Revolutions";
+		else	
+			myText = "Stop Revolutions";
+		isRotating = !isRotating;
+		
+		setInnerText (myText, stopRotateObj)
+	}
+	function scaleFunc(param) {
+	
+		if (param < 0) 
+		{
+			if (amplifier <= 0)
+				// fix lowest rotation agle at 0
+				amplifier = 0;
+			else	
+				amplifier -= .01;
+		}
+		else	
+			amplifier  += .01;
+		
+
+	}
+	
+	function reset (param) {
+	
+		// prepare canvas for drawing
+		// in vase of parabola we need to translate canvas so
+		// Y axis is in the midle of the screen to simpley parabola drawing
+	
+		if (translated) {
+			ctx.translate ( -ctx.canvas.width / 2, 0);
+			translated = !translated;
+		}
+		if (param == "parabola") {
+			reverse.style.visibility='hidden'
+			parabola.checked=true;
+			curve.checked=false;
+			ctx.translate ( ctx.canvas.width /2, 0);
+			translated = true;
+			x =   -Math.sqrt (ctx.canvas.height / a );
+			if (rotoSpeed < 0) 
+				// allow only one direction for simiplicity
+				rotoSpeed *= -1;
+			ctx.clearRect(-ctx.canvas.width/2, 0, ctx.canvas.width, ctx.canvas.height);
+		}
+		else {				
+			// clear canvas and reset coordiantes to 0
+			reverse.style.visibility='visible';
+			curve.checked=true;
+			parabola.checked=false;
+			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+			distanceCurve = 0;
+		}
+	}
+	
+</script> 
+</head>
+<body>
+
+<canvas id="myCanvas" width="850" height="600" style="border:1px solid red;">
+	Canvas is not supported.
+</canvas>
+
+<span class="Inc"> <button type="button" onclick="scaleFunc (1)"> Increase Revolution Speed </button></span>
+<span class="Dcr"> <button type="button" onclick="scaleFunc (-1)"> Decrease Revolution Speed </button></span>
+<span class="msg"> <button type="button" onclick="stopRotate ()" id="btnStopRotate"> Stop Revolutions </button></span>
+
+<span class="IncTrvl"> <button type="button" onclick="rotoSpeed += 5"> Increase Travel Speed </button></span>
+<span class="DcrTrvl"> <button type="button" onclick="rotoSpeed -= 5; if (rotoSpeed < 0) rotoSpeed = 0"> Decrease Travel Speed </button></span>
+<span class="reverse"> <button type="button" onclick="rotoSpeed *= -1" id="reverse"> Reverse Direction </button></span>
+
+<span class="butterfly"> <input type="radio" name="curve" onclick="reset('butterfly')" id="curve" > Butterfly Curve </span>
+<span class="parabola"> <input type="radio" name = "curve" onclick="reset('parabola')" id="parabola"> Parabolic Curve </span>
+<span id="label">.</span>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html />
+
+<html>
+<head>
+    <title>This tag is deprecated</title>
+    
+</head>
+<body>
+    <form action="keygen.aspx" method="post">
+        <keygen name="securityKey" id="securityKey" keytype="rsa" />
+        <input type="submit" value="Submit" />
+        <button onclick="GetKey()">Get Key</button>
+    </form>
+    <script>
+        function GetKey()
+        {
+            var key = document.getElementById("securityKey").value;
+            alert(key);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html />
+
+<html>
+<head runat="server">
+    <title></title>
+    
+    <style type="text/css">
+        body
+        {
+            font-family:Verdana, Arial;
+            font-size:10pt;
+        }
+        
+        .class1
+        {
+            color:Blue;
+            font-weight:bolder;
+        }
+        
+        .class2
+        {
+            color:brown;
+            font-weight:bold;
+            background-color:yellow;
+        }
+        
+    </style>
+
+    <!-- START - jQuery Reference -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js"></script>
+
+    <script type='text/javascript'>//<![CDATA[
+        if (typeof jQuery == 'undefined') {
+            document.write(unescape("%3Cscript src='/Script/jquery-1.11.1.min.js' type='text/javascript' %3E%3C/script%3E"));
+        }//]]>
+    </script>
+    <!-- END - jQuery Reference -->
+</head>
+<body>
+    <form id="form1" runat="server" >
+
+<!-- START - Demo Code -->
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+<!-- END - Demo Code -->
+
+    </form>
+<!-- START - Other Navigation Links -->
+<p><a target="_blank" href="http://www.dotnetfunda.com" title="DotNetFunda.Com">DotNetFunda.Com</a> | <a target="_blank" href="http://www.itfunda.com" title="ITFunda.Com">ITFunda.Com</a> </p>
+<!-- END - Other Navigation Links -->
+</body>
+</html>

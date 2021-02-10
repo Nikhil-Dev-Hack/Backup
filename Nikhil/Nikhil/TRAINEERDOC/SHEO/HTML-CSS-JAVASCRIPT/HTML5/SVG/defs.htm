@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html />
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+defs is used to define the content for future use.
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs>
+        <g id="ShapeGroup">
+            <rect width="200" height="100" fill="Red" />
+             <ellipse cx="100" cy="120" rx="50" ry="50" style="fill:yellow;stroke-width:3;stroke:pink;" />
+        </g>
+    </defs>
+
+    <use xlink:href="#ShapeGroup" transform="scale(0.5)" />
+    <use xlink:href="#ShapeGroup" transform="translate(150, 120), scale(0.75)" />
+</svg>
+
+</body>
+</html>

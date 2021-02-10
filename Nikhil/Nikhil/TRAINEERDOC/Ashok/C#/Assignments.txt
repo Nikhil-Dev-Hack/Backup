@@ -1,0 +1,16 @@
+Write SQL Query for the below requirement:
+
+01. Create Customer, and CustomerOrders table.
+	You need to enter customer details in Customer table.
+	You need to enter the orders customer has placed in CustomerOrders table.
+	It is your responsibility to analyze what are the columns required for each of the table
+
+02. There should be at least 10 number of customers exists in the database. But, It is not necessary that all customers should have some orders placed, i.e. a customer can exist without any entery in CustomerOrders table.
+
+03. Wriete a query to show all the customer details, and all the orders he placed. I want to see all the customers information eventhough there are no orders for that particular customer.
+
+Customer(Id, Name, Mobile)
+Customer_Orders(Id, CustomerId, Orders)
+
+SELECT cust.Id, cust.Name, co.Orders FROM 
+Customer cust inner join Customer_Orders co on cust.Id = co.CustomerId

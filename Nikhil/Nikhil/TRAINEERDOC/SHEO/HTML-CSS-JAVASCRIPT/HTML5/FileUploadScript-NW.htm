@@ -1,0 +1,30 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Saving Canvas to .png file on the server</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function sendForm() {
+            var output = document.getElementById("myOutput");
+            var data = new FormData(document.getElementById("myFile"))
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "fileUploadScript.aspx", false)
+            xhr.send(data);
+            if (xhr.status == 200) {
+                output.innerHTML += "Uploaded!";
+            } else {
+                output.innerHTML += "Error " + xhr.status + " occurred uploading your file.<br />";
+            }
+        }
+    </script>
+</head>
+<body>
+    <form enctype="multipart/form-data" method="post">
+    Select a file to upload:
+    <input type="file" name="myFile" id="myFile" required="true">
+    </form>
+    <output name="myOutput" id="myOutput" />
+    <a href="javascript:sendForm()">Upload File</a>
+</body>
+</html>

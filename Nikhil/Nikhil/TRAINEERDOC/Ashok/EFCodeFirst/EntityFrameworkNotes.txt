@@ -1,0 +1,31 @@
+Agenda:
+
+Crete database using EF Code First Approach
+Create Department table using EF Code First Approach
+
+
+Crete database using EF Code First Approach:
+*. Add required namespaces
+	Microsoft.EntityFrameworkCore
+	Microsoft.EntityFrameworkCore.SqlServer
+	Microsoft.EntityFrameworkCore.Tools
+	Microsoft.EntityFrameworkCore.Desing
+*. Create required models using C# classes
+*. You've to create DbContext class
+*. Create migrations to create database like shown below
+
+To open Package Manager Console: Tool -> NuGet Package Manager -> select "Package Manager Console"
+PM> Add-Migration Initial
+PM> Update-Database
+
+If the table is already existing in Database, just add [Table("Department")] upon your class. Here, "Department" represents your database table name.
+
+Agenda: As "Departments" table is created in database, how to insert record into this table?
+
+To insert record, just use CompanyContext class.
+
+Task:
+Create Product table (You decide what columns are better to have)
+Create Orders table (you decide what columns are better to have)
+Constraints:
+One to Many relationship exists between Product and Orders table, which means that many number of products can exist for one order

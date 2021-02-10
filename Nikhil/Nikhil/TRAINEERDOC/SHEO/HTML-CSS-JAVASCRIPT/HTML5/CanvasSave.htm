@@ -1,0 +1,51 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Saving Canvas to .png file on the server</title>
+ <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.4.2.min.js" type="text/javascript"></script>
+
+<script type="text/Javascript" language="Javascript">
+    function drawShapes() {
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext("2d");
+        context.fillStyle = "Blue";
+        context.fillRect(0, 0, 200, 200);
+        context.beginPath();
+        context.lineWidth = "4";
+        context.strokeStyle = "Green";
+        context.fillStyle = "Yellow";
+        context.arc(150, 100, 50, 20, Math.PI * 2, false);
+        context.stroke();
+        context.fill();
+    }
+</script>
+</head>
+<body onLoad="drawShapes()">
+<canvas id="myCanvas" width="200" height="200"></canvas>
+
+<input type="button" id="btnSave" name="btnSave" value="Save the canvas to server" />
+
+ <script type="text/javascript">
+     // Send the canvas image to the server.
+     $(function () {
+         $("#btnSave").click(function () {
+             var image = document.getElementById("myCanvas").toDataURL("image/png");
+             image = image.replace('data:image/png;base64,', '');
+
+             $.ajax({
+                 type: 'POST',
+                 url: 'CanvasSave.aspx/UploadImage',
+                 data: '{ "imageData" : "' + image + '" }',
+                 contentType: 'application/json; charset=utf-8',
+                 dataType: 'json',
+                 success: function (msg) {
+                     alert('Image saved successfully !');
+                 }
+             });
+         });
+     });
+</script>
+
+</body>
+</html>

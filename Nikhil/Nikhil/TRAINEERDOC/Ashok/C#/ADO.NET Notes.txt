@@ -1,0 +1,16 @@
+How to connect to SQL Server from Visual studio:
+01. Goto View -> SQL Server Object Explorer
+02. Click on "Add SQL Server Icon" -> "Connect" dialog appears -> Provide required information and click on "Advanced..." link button -> You should see the connection string information in the "Advanced Properties" dialog.
+
+Task:
+WAP to insert Employee record using SQL server query.
+WAP to insert Employee record using SQL server stored procedure.
+
+alter procedure usp_CreateDepartment
+	@DeptName NVARCHAR(50),
+	@Location NVARCHAR(50)
+AS
+BEGIN
+	INSERT INTO Department(DeptName, Loc) VALUES(@DeptName, @Location)
+END
+select * from Department

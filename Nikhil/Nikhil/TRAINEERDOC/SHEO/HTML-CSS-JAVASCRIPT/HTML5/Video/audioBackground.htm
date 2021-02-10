@@ -1,0 +1,60 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>HTML 5 video</title>
+    <style>
+        body{
+            background-color:#e09103;
+        }
+        #control{
+            position:fixed;
+            bottom:0%;
+            left:50%;
+        }
+    </style>
+</head>
+<body>
+    <audio src="954.mp3" id="audio1" autoplay loop>
+        Audio is not supported.
+    </audio>
+    <div id="content">
+        <h1>This is <i>TechFunda</i></h1>
+        <p style="font-size:18px;">To know the events details of multimedia elements of HTML5, read this. In this post, we shall learn how to handle audio media in web page using HTML5.
+To play audio in HTML5, we can use the  tag which is introduced in HTML5. At the time of writing this post, any one of .mp3, .wav or .ogg audio files are supported in all new browsers like Google Chrome, FireFox etc. Below are html5 audio player code.</p>
+        <p style="font-size:18px;">
+            To know the events details of multimedia elements of HTML5, read this. In this post, we shall learn how to handle audio media in web page using HTML5.
+            To play audio in HTML5, we can use the  tag which is introduced in HTML5. At the time of writing this post, any one of .mp3, .wav or .ogg audio files are supported in all new browsers like Google Chrome, FireFox etc. Below are html5 audio player code.
+        </p>
+        <p style="font-size:18px;">
+            To know the events details of multimedia elements of HTML5, read this. In this post, we shall learn how to handle audio media in web page using HTML5.
+            To play audio in HTML5, we can use the  tag which is introduced in HTML5. At the time of writing this post, any one of .mp3, .wav or .ogg audio files are supported in all new browsers like Google Chrome, FireFox etc. Below are html5 audio player code.
+        </p>
+        <p style="font-size:18px;">
+            To know the events details of multimedia elements of HTML5, read this. In this post, we shall learn how to handle audio media in web page using HTML5.
+            To play audio in HTML5, we can use the  tag which is introduced in HTML5. At the time of writing this post, any one of .mp3, .wav or .ogg audio files are supported in all new browsers like Google Chrome, FireFox etc. Below are html5 audio player code.
+        </p>
+    </div>
+    <div id="control">
+        <input type="button" id="btnPause" onclick="PausePlay()" style="padding:20px;" value="Pause" />
+    </div>
+
+    <script>
+        var audio = document.getElementById("audio1");
+        var btn = document.getElementById("btnPause");
+        function PausePlay() {
+            if (audio.paused) {
+                audio.play();
+                btn.value = "Pause";
+            } else if (audio.ended) {
+                audio.currentTime = 0;
+                audio.play();
+                btn.value = "Pause";
+            }
+            else {
+                audio.pause();
+                btn.value = "Play";
+            }
+        }
+    </script>
+   </body>
+</html>

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html />
+
+<html>
+<head>
+    <title>Drawing lines</title>
+    <meta charset="UTF-8" />
+    <script type="text/javascript">
+        function DrawLines() {
+            var canvas = document.getElementById("Canvas1").getContext("2d");
+
+            // canvas.beginPath();
+            canvas.moveTo(50, 50);
+            canvas.lineTo(50, 100);
+            canvas.lineTo(200, 100);
+            canvas.lineTo(200, 50);
+            canvas.lineTo(50, 25);
+            canvas.closePath();
+            
+            canvas.fillStyle = "Blue";
+            canvas.globalAlpha  = 0.2;
+			canvas.fill();
+            canvas.lineWidth = "5";
+            canvas.strokeStyle = "Red";
+            canvas.stroke();
+        }
+    </script>
+</head>
+<body>
+    <canvas id="Canvas1" width="300" height="200" style="border:1px;">
+        Canvas is not supported in your browser
+    </canvas>
+    <br />
+    <input type="button" onclick="DrawLines()" value="Draw Line" />
+</body>
+</html>

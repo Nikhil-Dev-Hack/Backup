@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML 5 input types</title>
+    <script src="../Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <form action="InputTypesubmit.aspx" method="post">
+        <fieldset>
+            <legend>Login</legend>Name:
+            <input type="text" id="myName" name="myName" required
+                   placeholder="Please enter your name" data-error="Name is required" />*
+            <br />
+            Email:
+            <input name="myEmail" id="myEmail" type="email" required 
+                   placeholder="Enter email" data-error="Email is required in you@domain.com" />
+            <br />
+            Url:
+            <input type="url" id="myUrl" name="myUrl" />
+            <input type="submit" id="mySubmit" name="mySubmit" />
+        </fieldset>
+
+    </form>
+    <script type="text/javascript">
+        $(function () {
+            var inputs = document.getElementsByTagName("INPUT");
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].oninvalid = function (e) {
+                    e.target.setCustomValidity("");
+                    if (!e.target.validity.valid) {
+                        e.target.setCustomValidity(e.target.getAttribute("data-error"));
+                    }
+                };
+            }
+        });
+    </script>
+</body>
+</html>

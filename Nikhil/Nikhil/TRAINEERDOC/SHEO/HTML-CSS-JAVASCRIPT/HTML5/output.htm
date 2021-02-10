@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html />
+
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    <!--It is primarily used to show the calculated output from javascirpt on the web page.
+    <form oninput="output.value = parseInt(a.value)">
+        
+        <input type="range" name="a" value="5" />
+
+        <p>
+            Ouput: <output name="output" for="a" />
+        </p>
+    </form>-->
+
+    A: <input type="text" id="txtA"/> 
+    B: <input type="text" id="txtB" /> 
+    <input type="button" onclick="Sum()" value="Sum"/>
+
+    This is the result: <output id="output1">0</output>
+    
+    <script>
+        function Sum()
+        {
+            var a = document.getElementById("txtA").value;
+            var b = document.getElementById("txtB").value;
+
+            var sum = parseInt(a) + parseInt(b);
+
+            document.getElementById("output1").value = sum;
+            // document.getElementsByName("output1")[0].value = sum;
+            // output1.value = sum;
+        }
+
+    </script>
+
+</body>
+</html>

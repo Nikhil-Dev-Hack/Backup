@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html />
+
+<html>
+
+<head>
+    <title>Drawing lines</title>
+    <meta charset="UTF-8" />
+    <script type="text/javascript">
+        var canvas;
+        var context;
+        var img;
+        var x = 50;
+        var y = 60;
+        var timer;
+        var imgW = 50;
+        var imgH = 10;
+
+        function StartAnimation() {
+
+            img = new Image();
+            canvas = document.getElementById("Canvas1");
+            context = canvas.getContext("2d");
+
+            img.addEventListener("load", function () {
+                timer = setInterval(AnimateNow, 10);
+            }, false);
+            img.src = '../button1.gif';
+        }
+
+        function AnimateNow() {
+            x++;
+            y++;
+            imgW++;
+            imgH++;
+
+            context.drawImage(img, x, y, imgW, imgH);
+
+            if (y == canvas.height) {
+                ResetCanvas();
+                StopAnimation();
+                StartAnimation();
+            }
+        }
+
+        function StopAnimation() {
+            clearInterval(timer);
+
+            x = 50;
+            y = 60;
+            imgW = 50;
+            imgH = 10;
+        }
+
+        function ResetCanvas() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    </script>
+</head>
+<body>
+    <h2>TechFunda.com</h2>
+    <canvas id="Canvas1" width="400" height="300" style="border:1px solid green;">
+        Canvas is not supported in your browser
+    </canvas>
+    <br />
+    <input type="button" onclick="StartAnimation()" value="Start Animation" />
+    <input type="button" onclick="StopAnimation()" value="Stop Animation" />
+    <input type="button" onclick="ResetCanvas()" value="Reset" />
+
+</body>
+</html>

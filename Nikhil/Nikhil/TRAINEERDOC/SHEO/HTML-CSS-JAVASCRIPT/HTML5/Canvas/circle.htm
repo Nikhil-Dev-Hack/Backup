@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html />
+
+<html>
+<head>
+    <title>Drawing lines</title>
+    <meta charset="UTF-8" />
+    <script type="text/javascript">
+        // to more about arc, visit http://simeonvisser.hubpages.com/hub/HTML5-Tutorial-Drawing-Circles-and-Arcs
+        function DrawCircle() {
+            var context = document.getElementById("myCanvas").getContext("2d");
+            
+            // context.beginPath();
+            context.lineWidth = "5";
+            // arc(x center coordinate, y center coordinate, radius, start angle value, end angle value, clock wise/anti clock wise=true)
+            // start and end angles are measured in radios. 360 degree = Mapth.PI * 2
+            context.arc(400, 250, 100, 0, 5, false);
+            context.strokeStyle = "red";
+            context.stroke(); // mandatory to call
+
+            context.beginPath();
+            context.lineWidth = "2";
+            context.strokeStyle = "green";
+            context.arc(100, 110, 110, 0, 4, true);
+
+            context.stroke(); // mandatory to call again
+
+            context.beginPath();
+            context.arc(350, 150, 90, 0, Math.PI * 1.5, false);
+            context.fillStyle = "green";
+            // context.globalAlpha = 0.2;
+            context.fill();
+
+       }
+    </script>
+</head>
+<body>
+    <canvas id="myCanvas" width="600" height="400" style="border:1px solid red;">
+        Canvas is not supported in your browser
+    </canvas>
+    <br />
+    <input type="button" onclick="DrawCircle()" value="Draw Circle" />
+</body>
+</html>

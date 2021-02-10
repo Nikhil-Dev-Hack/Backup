@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html />
+
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    <form id="form1" name="form1" method="post" action="">
+        
+        <output id="output">Listening ....</output>
+
+        <script type="text/javascript">
+
+            window.addEventListener("message", DisplayMessage, false);
+
+            function DisplayMessage(e) {
+                // if (e.origin == "http://www.mydomain.com") { // do the work; }
+
+                document.getElementById("output").innerHTML = 
+                    "Received message <br />Origin: "
+                    + e.origin + "<br />Message: <b>" +  e.data + "</b>";
+            }           
+
+        </script>        
+    </form>
+</body>
+</html>

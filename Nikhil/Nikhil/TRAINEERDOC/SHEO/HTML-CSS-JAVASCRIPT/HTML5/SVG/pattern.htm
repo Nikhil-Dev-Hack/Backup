@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html />
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    defs is used to define the content for future use.
+    <svg width="200" height="200">
+        <defs>
+            <pattern id="ImagePattern" x="0" y="0" width="100"
+                height="67">
+                <image x="0" y="0" width="100" height="67" xlink:href="../images/HTML5ITFC.jpg">
+                </image>
+            </pattern>
+            <lineargradient id="GradientPattern">
+                <stop offset="0%" stop-color="#000"></stop>
+                <stop offset="100%" stop-color="#f00"></stop>
+            </lineargradient>
+        </defs>
+        <rect x="10" y="20" width="100" height="80" stroke="red" fill="url(#ImagePattern)" />
+        <circle cx="120" cy="80" r="40" stroke="#00f" stroke-width="8" fill="url(#GradientPattern)" />
+    </svg>
+</body>
+</html>

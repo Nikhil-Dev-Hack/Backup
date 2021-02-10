@@ -1,0 +1,42 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Rectangle using Canvas</title>
+   <script type="text/javascript">
+       function DrawRectangle() {
+           var context = document.getElementById('myCanvas').getContext('2d');
+           
+            // context.beginPath();
+            context.lineWidth = "2";
+            
+            // rect(x, y, rectangle-width, rectangle-height);
+            context.strokeRect(10, 10, 50, 100);
+
+            context.fillStyle = "Red";
+            context.fillRect(20, 20, 30, 50);
+
+            context.strokeStyle = "green";
+           context.strokeRect(150, 100, 100, 100);
+
+            context.shadowColor = "green";
+            context.shadowOffsetX = 5;
+            context.shadowOffsetY = 10;
+
+            context.globalAlpha = 0.10;
+
+            context.fillStyle = "red";
+            context.fillRect(200, 150, 100, 100);
+
+            
+       }
+   
+   </script>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="300" style="border:1px solid #c0c0c0;">
+    </canvas>
+
+    <br />
+    <input type="button" onclick="DrawRectangle()" value="Draw Rectangles" />
+</body>
+</html>

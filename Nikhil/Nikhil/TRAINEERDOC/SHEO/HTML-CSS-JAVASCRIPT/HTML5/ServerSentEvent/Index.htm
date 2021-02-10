@@ -1,0 +1,57 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+<head>
+    <title>Server sent event</title>
+    <script type="text/javascript">
+
+        function PageLoad() {
+
+            if (window.EventSource == undefined) {
+                document.getElementById('divResult').innerHTML
+                    = "This browser doesn't support Server Sent Event.";
+                return;
+            }
+
+            var source = new EventSource('Default.aspx');
+            source.addEventListener('Insert', insertFunction, false);
+
+            source.onopen = function (event) {
+                document.getElementById('divResult').innerHTML
+                    += 'Connection to the server opened.<br />';
+            };
+
+            source.onerror = function (event) {
+                if (event.eventPhase == EventSource.CLOSED) {
+                    document.getElementById('divResult').innerHTML
+                        += 'Connection is closed now.<br />';
+                }
+            };
+
+            source.onmessage = function (event) {
+                document.getElementById('divResult').innerHTML
+                    += event.data + '<br />';
+                // document.getElementById('divResult').innerHTML += JSON.parse(event.data)[0].name + '<br />';
+            };
+        }
+
+        function insertFunction(event) {
+            document.getElementById('divInsert').innerHTML += event.data + '<br />';
+        }
+
+    </script>
+</head>
+<body onload="PageLoad()">
+    <form>
+        <h1>Demo of Server Sent Event</h1>
+        <p>
+            This is used to automatically get update from server without user interaction. This is one way - from server to client.
+            <br />Eg. Facebook update, stock market update, news feed etc.
+        </p>
+        <div id="divResult" style="color:blue;"></div>
+        <hr />
+        <div id="divInsert" style="color:green;"></div>
+
+    </form>
+</body>
+</html>

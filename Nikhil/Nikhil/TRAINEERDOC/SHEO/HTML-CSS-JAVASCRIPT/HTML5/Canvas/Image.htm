@@ -1,0 +1,46 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Working with images in Canvas</title>
+    
+
+   <script type="text/javascript">
+       function DrawImage() {
+
+           // Local image
+           var img = document.getElementById("image1");
+           var context = document.getElementById('myCanvas').getContext('2d');
+           context.drawImage(img, 10, 30);
+
+           // remove image
+           var imgO = new Image();
+           var context1 = document.getElementById('Canvas1').getContext('2d');
+           imgO.src = 'http://www.dotnetfunda.com/images/dotnetfunda.gif';
+           context1.drawImage(imgO, 20, 0);
+
+       }
+   </script>
+    <style>
+        canvas
+        {
+            border:1px solid #808080;
+        }
+    </style>
+</head>
+<body>
+    
+    <img src="button1.gif" id="image1" style="display:none;height:100px;width:100px;" />
+    <div>
+    <canvas id="myCanvas" width="300" height="100">
+    </canvas>
+    </div>
+    <hr />
+    <div>
+    <canvas id="Canvas1" width="250" height="100">
+    </canvas>
+    </div>
+
+    <br />
+    <input type="button" onclick="DrawImage()" value="Draw Image" />
+</body>
+</html>

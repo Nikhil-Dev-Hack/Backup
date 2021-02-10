@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html />
+
+<html>
+<meta http-equiv="X-UA-Compatible" content="IE=9" />
+<head>
+    <title>Drawing images with sequence</title>
+    <meta charset="UTF-8" />
+    <script src="../../Scripts/ModernizrBuild.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var canvas;
+        var context;
+        var photo;
+        var timer;
+        var count = 0;
+
+        function StartAnimation() {
+
+            img = new Image();
+            canvas = document.getElementById("Canvas1");
+            context = canvas.getContext("2d");
+            AnimateNow();
+           //  img.src = 'images/image1.JPG';
+        }
+
+        function AnimateNow() {
+            count++;
+            img.src = 'images/image' + count + '.JPG';
+            context.drawImage(img, 50, 60, 120, 151);
+            
+            timer = setTimeout(AnimateNow, 100);
+            
+            if (count == 8) {
+                StopAnimation();
+            }
+        }
+
+        function StopAnimation() {
+            count = 0;
+            clearTimeout(timer);
+        }
+
+        function ResetCanvas() {
+            count = 0;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    </script>
+</head>
+<body>    
+    <canvas id="Canvas1" width="600" height="400" style="border:5px solid green;">
+        Canvas is not supported in your browser
+    </canvas>
+    <br />
+    <input type="button" onclick="StartAnimation()" value="Start Animation" />
+    <input type="button" onclick="StopAnimation()" value="Stop Animation" />
+    <input type="button" onclick="ResetCanvas()" value="Reset" />
+</body>
+</html>

@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DemoDatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="DemoDatabaseModelStoreContainer">
+          <EntitySet Name="AspNet_SqlCacheTablesForChangeNotification" EntityType="DemoDatabaseModel.Store.AspNet_SqlCacheTablesForChangeNotification" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Files" EntityType="DemoDatabaseModel.Store.Files" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GlobalLanguage" EntityType="DemoDatabaseModel.Store.GlobalLanguage" store:Type="Tables" store:Schema="dbo" store:Name="GlobalLanguage">
+            <DefiningQuery>SELECT 
+      [GlobalLanguage].[AutoId] AS [AutoId], 
+      [GlobalLanguage].[Title] AS [Title], 
+      [GlobalLanguage].[Description] AS [Description]
+      FROM [dbo].[GlobalLanguage] AS [GlobalLanguage]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Menus" EntityType="DemoDatabaseModel.Store.Menus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PersonalDetail" EntityType="DemoDatabaseModel.Store.PersonalDetail" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="AspNet_SqlCacheTablesForChangeNotification">
+          <Key>
+            <PropertyRef Name="tableName" />
+          </Key>
+          <Property Name="tableName" Type="nvarchar" Nullable="false" MaxLength="450" />
+          <Property Name="notificationCreated" Type="datetime" Nullable="false" />
+          <Property Name="changeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Files">
+          <Key>
+            <PropertyRef Name="AutoId" />
+          </Key>
+          <Property Name="AutoId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="FileContent" Type="image" Nullable="false" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="PersonalDetailsId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'DemoDatabase.dbo.GlobalLanguage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="GlobalLanguage">
+          <Key>
+            <PropertyRef Name="AutoId" />
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="AutoId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Description" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Menus">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="MenuName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="MenuDescription" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="ParentMenuId" Type="int" />
+          <Property Name="MenuUrl" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="PersonalDetail">
+          <Key>
+            <PropertyRef Name="AutoId" />
+          </Key>
+          <Property Name="AutoId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DemoDatabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DemoDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNet_SqlCacheTablesForChangeNotification" EntityType="DemoDatabaseModel.AspNet_SqlCacheTablesForChangeNotification" />
+          <EntitySet Name="Files" EntityType="DemoDatabaseModel.File" />
+          <EntitySet Name="GlobalLanguages" EntityType="DemoDatabaseModel.GlobalLanguage" />
+          <EntitySet Name="Menus" EntityType="DemoDatabaseModel.Menu" />
+          <EntitySet Name="PersonalDetails" EntityType="DemoDatabaseModel.PersonalDetail" />
+        </EntityContainer>
+        <EntityType Name="AspNet_SqlCacheTablesForChangeNotification">
+          <Key>
+            <PropertyRef Name="tableName" />
+          </Key>
+          <Property Name="tableName" Type="String" Nullable="false" MaxLength="450" Unicode="true" FixedLength="false" />
+          <Property Name="notificationCreated" Type="DateTime" Nullable="false" />
+          <Property Name="changeId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="AutoId" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="FileContent" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="PersonalDetailsId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="GlobalLanguage">
+          <Key>
+            <PropertyRef Name="AutoId" />
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuId" />
+          </Key>
+          <Property Name="MenuId" Type="Int32" Nullable="false" />
+          <Property Name="MenuName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="MenuDescription" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="ParentMenuId" Type="Int32" />
+          <Property Name="MenuUrl" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PersonalDetail">
+          <Key>
+            <PropertyRef Name="AutoId" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DemoDatabaseModelStoreContainer" CdmEntityContainer="DemoDatabaseEntities">
+          <EntitySetMapping Name="AspNet_SqlCacheTablesForChangeNotification"><EntityTypeMapping TypeName="DemoDatabaseModel.AspNet_SqlCacheTablesForChangeNotification"><MappingFragment StoreEntitySet="AspNet_SqlCacheTablesForChangeNotification">
+            <ScalarProperty Name="tableName" ColumnName="tableName" />
+            <ScalarProperty Name="notificationCreated" ColumnName="notificationCreated" />
+            <ScalarProperty Name="changeId" ColumnName="changeId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Files"><EntityTypeMapping TypeName="DemoDatabaseModel.File"><MappingFragment StoreEntitySet="Files">
+            <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+            <ScalarProperty Name="FileName" ColumnName="FileName" />
+            <ScalarProperty Name="FileContent" ColumnName="FileContent" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+            <ScalarProperty Name="PersonalDetailsId" ColumnName="PersonalDetailsId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="GlobalLanguages"><EntityTypeMapping TypeName="DemoDatabaseModel.GlobalLanguage"><MappingFragment StoreEntitySet="GlobalLanguage">
+            <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Menus"><EntityTypeMapping TypeName="DemoDatabaseModel.Menu"><MappingFragment StoreEntitySet="Menus">
+            <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+            <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+            <ScalarProperty Name="MenuDescription" ColumnName="MenuDescription" />
+            <ScalarProperty Name="ParentMenuId" ColumnName="ParentMenuId" />
+            <ScalarProperty Name="MenuUrl" ColumnName="MenuUrl" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PersonalDetails"><EntityTypeMapping TypeName="DemoDatabaseModel.PersonalDetail"><MappingFragment StoreEntitySet="PersonalDetail">
+            <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+            <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+            <ScalarProperty Name="LastName" ColumnName="LastName" />
+            <ScalarProperty Name="Age" ColumnName="Age" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="DemoDatabaseModel.AspNet_SqlCacheTablesForChangeNotification" Width="1.5" PointX="0.75" PointY="0.75" Height="1.59568359375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDatabaseModel.File" Width="1.5" PointX="2.75" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDatabaseModel.GlobalLanguage" Width="1.5" PointX="0.75" PointY="3.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDatabaseModel.Menu" Width="1.5" PointX="2.75" PointY="3.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="DemoDatabaseModel.PersonalDetail" Width="1.5" PointX="4.75" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

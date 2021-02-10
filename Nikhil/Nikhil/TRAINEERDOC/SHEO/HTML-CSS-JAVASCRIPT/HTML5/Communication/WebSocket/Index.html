@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="/scripts/jquery-1.4.1.min.js"></script>
+    <script type="text/javascript" src="/scripts/ModernizrBuild.js"></script>
+    <!-- LOOk at the independent project for Web Socket -->
+    <script type="text/javascript">
+        var socket;
+        $(document).ready(function () {
+            if (!Modernizr.websockets) {
+                alert("This browser doesn't support HTML5 Web Sockets!");
+                return;
+            }
+
+            socket = new WebSocket("ws://localhost:63838/WebSocketListener.ashx");
+
+            socket.addEventListener("open", function (evt) {
+                $("#divHistory").append('<h3>Connection Opened with the server.</h3>');
+            }, false);
+
+            socket.addEventListener("close", function (evt) {
+                $("#divHistory").append('<h3>Connection was closed. :' + evt.reason + '</h3>');
+            }, false);
+
+            socket.addEventListener("message", function (evt) {
+                $("#divHistory").append('<h3>' + evt.data + '</h3>');
+            }, false);
+
+            socket.addEventListener("error", function (evt) {
+                alert('Error : ' + evt.message);
+            }, false);
+
+            $("#btnSend").click(function () {
+                if (socket.readyState == WebSocket.OPEN) {
+                    socket.send($("#txtMsg").val());
+                }
+                else {
+                    $("#divHistory").append('<h3>The underlying connection is closed.</h3>');
+                }
+            });
+
+            $("#btnStop").click(function () {
+                socket.close();
+            });
+        });
+    </script>
+</head>
+<body>
+    <p>WebSockets support full-duplex, bi-directional messaging for real-time, low-latency messaging scenarios.</p>
+    <form id="form1">
+        <span>Enter some text :</span><br />
+        <input type="text" id="txtMsg" />
+        <input type="button" id="btnSend" value="Send" />
+        <input type="button" id="btnStop" value="Stop" />
+        <div id="divHistory"></div>
+    </form>
+</body>
+</html>

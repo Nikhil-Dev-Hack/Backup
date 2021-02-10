@@ -1,0 +1,16 @@
+﻿body {
+   
+}
+
+table, th, td {
+    border: 2px solid Brown;
+    border-collapse: collapse;
+}
+
+p:first-line {
+    color: Green;
+}
+
+p:first-letter {
+    font-size: 25px;
+}

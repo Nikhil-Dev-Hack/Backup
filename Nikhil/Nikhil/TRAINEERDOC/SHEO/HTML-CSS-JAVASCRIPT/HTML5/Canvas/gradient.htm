@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html />
+
+<html>
+<head>
+    <title>Drawing gradients</title>
+    <meta charset="UTF-8" />
+    <script type="text/javascript">
+        function DrawLines() {
+            var context = document.getElementById("myCanvas").
+                getContext("2d");
+
+            // createLinearGradient(lineStartingPointX, lineStartingPointY,
+            // lineEndingPointX, lineEndingPointY);
+
+            var gradient = context.createLinearGradient(100, 20, 100, 120);
+            gradient.addColorStop(0.25, "orange");
+            gradient.addColorStop(0.50, "yellow");
+            gradient.addColorStop(0.75, "red");
+            gradient.addColorStop(1, "blue");
+
+            context.beginPath();
+            context.fillStyle = gradient;
+            context.rect(20, 20, 160, 120);
+            context.fill();
+
+
+            context.beginPath();
+            gradient = context.createLinearGradient(250, 300, 350, 275);
+            gradient.addColorStop(0, "green");
+            gradient.addColorStop(0.50, "blue");
+            gradient.addColorStop(.75, "yellow");
+            context.fillStyle = gradient;
+            context.rect(250, 275, 100, 100);
+            context.fill();
+        }
+    </script>
+</head>
+<body>
+    <canvas id="myCanvas" width="600" height="400">
+        Canvas is not supported in your browser
+    </canvas>
+    <br />
+    <input type="button" onclick="DrawLines()" value="Draw Rectangle Gradient" />
+</body>
+</html>

@@ -1,0 +1,4 @@
+﻿
+These two files needs change based on the type of server application is installed on.
+
+More here - https://msdn.microsoft.com/en-us/library/ms689443(v=vs.90).aspx

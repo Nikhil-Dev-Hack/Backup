@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html />
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <script type="text/javascript">
+
+        function DragMe(source, e) {
+            e.dataTransfer.setData('Text', source.id);
+        }
+
+        function DropElement(target, e) {
+            var id = e.dataTransfer.getData('Text');
+
+            target.appendChild(document.getElementById(id));
+            // target.innerHTML = target.innerHTML + "<br />";
+        }
+
+        function HighlightArea(id, isTrue)
+        {
+            isTrue == true ? document.getElementById(id).style.backgroundColor = "yellow" :
+            document.getElementById(id).style.backgroundColor = "";
+        }
+
+    </script>
+</head>
+<body>
+    <div>
+        <img id="img1" src="../images/bittergourd.jpg" draggable="true" alt="" ondragstart="DragMe(this, event)" />
+        <img id="img2" src="../images/Pumpkins.jpg" draggable="true" alt="" ondragstart="DragMe(this, event)"  />
+        <img id="img3" src="../images/PumpkinRound.jpg" alt="" draggable="true" ondragstart="DragMe(this, event)"  />
+    </div>
+
+    <div id="div1" style="border:4px dashed #c0c0c0;height:200px;width:400px;padding:10px;margin:30px;"
+         ondrop="DropElement(this, event)" 
+         ondragenter="HighlightArea(this.id, true)"
+         onmouseout="HighlightArea(this.id, false)" 
+         ondragleave="HighlightArea(this.id, false)"
+         ondragover="return false">
+    </div>
+
+</body>
+</html>

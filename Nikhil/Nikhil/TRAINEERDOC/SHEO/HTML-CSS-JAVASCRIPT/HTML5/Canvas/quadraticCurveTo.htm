@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html />
+
+<html>
+<head>
+    <title>Drawing lines</title>
+    <meta charset="UTF-8" />
+
+</head>
+<body>
+    <canvas id="myCanvas" width="600" height="400" style="border:1px solid red;">
+        Canvas is not supported in your browser
+    </canvas>
+    <br />
+    <input type="button" onclick="DrawCircle()" value="Draw Circle" />
+
+        <script type="text/javascript">
+            // to more about arc, visit http://simeonvisser.hubpages.com/hub/HTML5-Tutorial-Drawing-Circles-and-Arcs
+            function DrawCircle() {
+                var context = document.getElementById("myCanvas").getContext("2d");
+
+                context.beginPath();
+                context.moveTo(100, 250);
+                // context.quadraticCurveTo(control point from left, control point from top, right point from left, right point from  top)
+                context.quadraticCurveTo(250, 0, 450, 250);
+                context.lineWidth = 5;
+                context.stroke();
+
+            }
+
+            // DrawCircle();
+    </script>
+
+</body>
+</html>

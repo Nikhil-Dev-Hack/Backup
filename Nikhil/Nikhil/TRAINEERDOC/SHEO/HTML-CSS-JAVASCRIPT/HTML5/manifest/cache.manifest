@@ -1,0 +1,14 @@
+﻿CACHE MANIFEST
+
+# V1 - best practice to keep track of the update
+/manifest/default.aspx
+
+# file that requires network connection
+NETWORK:
+/manifest/second.aspx
+
+
+#fallback in case network is not available 
+FALLBACK: 
+*.aspx /manifest/offline.htm
+

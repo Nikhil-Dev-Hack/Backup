@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F61015C1-0292-46BC-84D8-C33D67ECC6C8}"
+	ProjectSection(SolutionItems) = preProject
+		Image.jpg = Image.jpg
+		Index.html = Index.html
+		jquery-3.5.1.min.js = jquery-3.5.1.min.js
+		MyScript.js = MyScript.js
+		MyStyle.css = MyStyle.css
+		Page1.html = Page1.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{1AE6D3C0-A058-4766-958B-5E2C4128B408}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ADONET", "ADONET\ADONET.csproj", "{289016BD-F2DB-490E-B246-DF0884C7A4FB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LINQQuery", "LINQQuery\LINQQuery.csproj", "{E4F79284-F85E-4695-981C-0A43EB0ADA30}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ADONETEntityFramework", "ADONETEntityFramework\ADONETEntityFramework.csproj", "{5B712A05-7B76-4D3F-A454-6C8E4BF2456C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{289016BD-F2DB-490E-B246-DF0884C7A4FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{289016BD-F2DB-490E-B246-DF0884C7A4FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{289016BD-F2DB-490E-B246-DF0884C7A4FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{289016BD-F2DB-490E-B246-DF0884C7A4FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4F79284-F85E-4695-981C-0A43EB0ADA30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4F79284-F85E-4695-981C-0A43EB0ADA30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4F79284-F85E-4695-981C-0A43EB0ADA30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4F79284-F85E-4695-981C-0A43EB0ADA30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B712A05-7B76-4D3F-A454-6C8E4BF2456C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B712A05-7B76-4D3F-A454-6C8E4BF2456C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B712A05-7B76-4D3F-A454-6C8E4BF2456C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B712A05-7B76-4D3F-A454-6C8E4BF2456C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F00A6ED2-313D-4CAA-B0E7-EE25F80907D7}
+	EndGlobalSection
+EndGlobal

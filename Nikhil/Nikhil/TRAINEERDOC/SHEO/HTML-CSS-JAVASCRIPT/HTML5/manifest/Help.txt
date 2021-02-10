@@ -1,0 +1,11 @@
+﻿Keep this into web.config as an alternative of generic handler
+
+<system.webServer>
+    <staticContent>
+      <mimeMap fileExtension=".manifest" mimeType="text/cache-manifest" />
+    </staticContent>
+  </system.webServer>
+
+Documentation: http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html
+Good article on Manifest: http://diveintohtml5.info/offline.html
+http://www.html5rocks.com/en/tutorials/appcache/beginner/

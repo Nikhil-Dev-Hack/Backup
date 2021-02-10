@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html />
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <form method="post" action="wbr.htm">
+    
+    <div contenteditable="true" id="divEdit" onblur="SaveContent()" style="border:1px solid #0094ff;">
+        This is the content of the div that is ediable. You can place mouse cursor here and start editing.
+    </div>
+
+    <script type="text/javascript">
+        document.designMode = "off"; // make the entire document editable and vice-versa.
+
+        var divEditable = document.getElementById('divEdit');
+
+        function SaveContent() {
+            localStorage.setItem("savedContent", divEditable.innerHTML);
+        }
+
+        
+        if (localStorage.getItem("savedContent") != null) {            
+            divEditable.innerHTML = localStorage.getItem("savedContent");
+        }
+
+        alert("Content is Editable : " + divEditable.isContentEditable);
+
+    </script>
+        <div>This is another div</div>
+   </form>
+</body>
+</html>

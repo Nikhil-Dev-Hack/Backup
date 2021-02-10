@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@ViewBag.ConnStr
+<table class="table table-striped">
+    <tr>
+        <th>EmpId</th><th>Name</th><th>Salary</th><th>Location</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.EmpId.</td><td>@item.Name</td><td>@item.Salary</td><td>@item.Location</td>
+        </tr>
+    }
+</table>
+

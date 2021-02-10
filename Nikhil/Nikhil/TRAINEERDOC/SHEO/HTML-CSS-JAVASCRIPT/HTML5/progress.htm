@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html />
+
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <script>
+        var count = 0;
+        function Start()
+        {
+            document.getElementById("progress1").value = count;
+
+            count++;
+            if (count == 11) {
+                count = 0;
+            }
+
+            t = setTimeout("Start()", 100);            
+        }
+        
+        function Stop()
+        {
+            count = 0;
+            clearTimeout(t);
+        }
+    </script>
+</head>
+<body>
+    <p>Represents the progress of a given task</p>
+    4 of 10
+    <progress value="0" max="10" id="progress1"></progress>
+    <p>
+    5  of 10
+    <progress value="5" max="10" id="progress2"></progress>
+    </p>
+   
+    
+    <p>
+        <input type="button" value="Start" onclick="Start()" />
+        <input type="button" value="Stop" onclick="Stop()" />
+    </p>
+
+    <time>20-Dec-2011 2.00 AM</time>
+</body>
+</html>

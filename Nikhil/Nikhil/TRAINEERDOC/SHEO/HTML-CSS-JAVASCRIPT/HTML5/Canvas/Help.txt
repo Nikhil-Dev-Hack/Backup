@@ -1,0 +1,12 @@
+﻿
+Animation examples in Canvas
+===============================
+
+Creating animation in HTML 5 Canvas - http://www.dummies.com/how-to/content/how-to-create-animation-with-the-html5-canvas-tag.html
+
+http://blogs.msdn.com/b/davrous/archive/2011/07/21/html5-gaming-animating-sprites-in-canvas-with-easeljs.aspx
+http://blog.ganeshzone.net/index.php/2010/12/simple-animation-using-html5-canvas/
+http://geekswithblogs.net/dwdii/archive/2011/10/23/using-html5-canvas-tag-for-simple-video-animation.aspx
+http://www.oshyn.com/_blog/General/post/HTML5_Animation_Using_Canvas_Element/
+http://www.html5canvastutorials.com/advanced/html5-canvas-linear-motion-animation/
+http://html5.litten.com/simple-animation-in-the-html5-canvas-element/

@@ -1,0 +1,1 @@
+CREATE VIEW Employee_VIEW AS SELECT Email,EmployeeName from EmployeeData 

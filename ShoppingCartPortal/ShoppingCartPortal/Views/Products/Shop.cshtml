@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ShoppingCartPortal.Models.Product>
+
+@{
+    ViewData["Title"] = "Shop";
+}
+
+<h1>Shop</h1>
+
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <h4>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </h4>
+                <img src="~/Images/@item.ImageName" alt="@item.ProductName" />
+            </td>
+            <td>
+                <div class="row">
+                    <div>
+                        <form class="" method="post" action="/Products/AddToCart">
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <label>Qty: </label>
+                                <select name="Qty" id="Qty" class="form-control">
+                                    :
+                                    @for (var i = 1; i < 10; i++)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
+                                </select>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <label>Price: </label>
+                                @item.Price.ToString("00.00")
+                                <input type="hidden" name="Price" value="@item.Price" />
+                            </div>
+                            <div class="form-group">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                <input type="submit" class="btn btn-success" value="Add to Cart" />
+                                <input type="hidden" name="ProductId" value="@item.ProductId" />
+                                }
+                                else
+                                {
+                                    <a href="/Identity/Account/Login" class="btn btn-warning">Login to Order</a>
+                                }
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+ 

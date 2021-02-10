@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>C_Sharp_Rev_</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="exam.cs" />
+    <Compile Remove="Exam1.cs" />
+    <Compile Remove="exam2.cs" />
+  </ItemGroup>
+
+</Project>

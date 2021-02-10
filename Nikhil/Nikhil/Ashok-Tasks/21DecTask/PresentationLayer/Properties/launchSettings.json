@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "PresentationLayer": {
+      "commandName": "Executable",
+      "executablePath": "D:\\Nikhil\\Ashok-Tasks\\21DecTask\\21DecTask\\bin\\Debug\\netcoreapp3.1\\21DecTask.exe",
+      "commandLineArgs": "/rootsuffix Exp"
+    }
+  }
+}

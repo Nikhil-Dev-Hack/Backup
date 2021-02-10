@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script >
+        function TestFunction() {
+            alert(location.href);
+            location.href = "Secondpage.html";
+        }
+    </script>
+    <style>
+        .asc {
+            width: 500px;
+            clear: both;
+        }
+
+            .asc .input {
+                width: 100%;
+                clear: both;
+            }
+
+        .submit {
+            background-color: green;
+            color: white;
+        }
+
+        .head {
+            background-color: blue;
+            color: white;
+            display: inline-flex;
+        }
+
+        #sec__body {
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <header class="head">
+        <nav id="nav__email">
+            <label for="email__ss">Email or Phone</label>
+            <input id="email__ss" type="email" placeholder="Email" required/>
+        </nav>
+        <nav id="nav__password">
+            <label for="pass__ss">Password</label>
+            <input id="pass__ss" type="password" placeholder="Password" required />
+        </nav>
+        <nav>
+            <input type="submit" value="Login" class="Login" onclick="TestFunction()" />
+        </nav>
+    </header>
+    <section id="sec__body">
+        <h1>Create an account</h1>
+        <p>It's free and always will be</p>
+        <form action="index.html" method="post" class="asc">
+            <input class="input" type="text" name="Firstname" placeholder="First Name" required />
+            <input class="input" type="text" name="surname" placeholder="surame" /><br />
+            <input class="input" type="number" required pattern="[0-9]{1,10}" name="mobnumber" placeholder="Mobile number" /><br />
+            <input class="input" name="myEmail" id="myEmail" type="email" required placeholder="Enter email" /><br />
+            <input class="input" name="password" type="password" required placeholder="Enter password" pattern="[a-zA-Z][a-zA-Z0-9-_.]{1,20}" /><br />
+            <p><strong>Birthday</strong></p><br />
+            <input type="date" name="month" class="month" required /><br />
+            <input type="radio" id="female" /><label for="female">Female</label>
+            <input type="radio" id="male" /><label for="male">Male</label><br />
+            <input  class="submit" type="submit" value="Create an account" onclick="TestFunction()" />
+        </form>
+    </section>
+
+</body>
+</html>

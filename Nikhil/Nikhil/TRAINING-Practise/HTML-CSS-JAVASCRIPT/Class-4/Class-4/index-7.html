@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    String <input type="text" name="txtName" id="txtName" value="This is a good boy" />
+    string to find <input type="text" name="txtFind" id="txtFind" value="iss" />
+    <input type="button" name="btnTestfunction" value="Find" onclick="TestFunction()" />
+    <script language="javascript" type="text/javascript">
+        function TestFunction() {
+            var string = document.getElementById("txtName").value;
+            var toFind = document.getElementById("txtFind").value;
+            var find = new RegExp(toFind);
+            alert(find.test(string));
+        }
+        Array a=
+    </script>
+
+
+</body>
+</html>

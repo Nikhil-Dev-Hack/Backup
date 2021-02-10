@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script language="javascript" type="text/javascript">
+            function ValidateTheForm() {
+                if (document.getElementById("txtFirstName").value == '') {
+                    alert("Please specify first name, it is mandatory !");
+                    return false;
+                    }
+                    else if(document.getElementById("txtLastName").value == ''){
+                        alert("Please specify Second name, it is mandatory !");
+                    return false;
+                    }
+                    else {
+                    return true;
+                }
+            }
+            </script>
+           <form action="HTMLPage.htm" method="post">
+                First Name: <input type="text" id="txtFirstName" name="txtName" /> *
+                Last Name: <input type="text" id="txtLastName" name="txtName" />
+                <input type="submit" id="btnSubmit" value="Submit" onclick="return ValidateTheForm()" />
+           </form>
+    </body>
+</html>

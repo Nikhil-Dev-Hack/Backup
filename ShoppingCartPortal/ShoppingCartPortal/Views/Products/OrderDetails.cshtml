@@ -1,0 +1,62 @@
+﻿@model ShoppingCartPortal.Models.Order
+
+@{
+    ViewData["Title"] = "OrderDetails";
+
+    var orderDetails = (IEnumerable<OrderDetail>)ViewBag.OrderDetails;
+}
+
+<h1>Order Details</h1>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderAmount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderAmount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <h4>Order Details</h4>
+    <table class="table table-striped">
+        <tr>
+            <td>Id</td><td>Product</td><td>Qty</td><td>Price</td>
+        </tr>
+        @foreach(var item in orderDetails)
+        {
+            <tr>
+                <td>@item.OrderDetailId</td>
+                <td>@item.Product.ProductName
+                <br />
+                <img src="~/Images/@item.Product.ImageName" alt="@item.Product.ProductName" />
+                </td>
+                <td>
+                    @item.Qty
+                </td>
+                <td>@item.Price</td>
+            </tr>
+        }
+    </table>
+</div>

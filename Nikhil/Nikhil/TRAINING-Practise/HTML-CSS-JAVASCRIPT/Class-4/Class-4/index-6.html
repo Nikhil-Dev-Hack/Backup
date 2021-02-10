@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <p id="p1"></p>
+    <script>
+
+        var today = new Date();
+
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var timedate = date + ' ' +time
+        document.getElementById("p1").innerHTML = timedate;
+
+    </script>
+
+</body>
+</html>

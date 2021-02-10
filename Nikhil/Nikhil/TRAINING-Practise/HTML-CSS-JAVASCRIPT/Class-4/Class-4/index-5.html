@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    Enter your name: <input type="text" name="txtName" id="txtName"
+                            onkeypress="CallFunction(this.id)" />
+    <input type="button" id="btn" name="btn" value="Submit" />
+    <p>The text in the textbox is: <label id="lblText"></label></p>
+    <script type="text/javascript">
+        function CallFunction(id) {
+            document.getElementById("lblText").innerHTML =
+                document.getElementById(id).value;
+        }
+    </script>
+    <script type="text/javascript">
+        document.write("This is big text ");
+        document.write(" This is big text".italics());
+    </script>
+
+</body>
+</html>

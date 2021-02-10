@@ -1,0 +1,46 @@
+--IF CONDION
+DECLARE @EmpFName nvarchar(50)
+SET @EmpFName = 'SHIVA11'
+IF (EXISTS (SELECT EmployeeFname FROM Employees WHERE EmployeeFname = @EmpFName))
+	BEGIN 
+		SELECT * FROM Employees WHERE EmployeeFname = @EmpFName
+	END
+ELSE IF (@EmpFName ='SHIVA11')
+	BEGIN 
+		SELECT'YOU ARE CRAZY AS M**F'
+	END
+ELSE 
+	BEGIN
+		SELECT 'NO RECORD FOUND' AS RESULTS
+	END
+-- WHILE LOOP
+DECLARE @COUNT INT =10
+WHILE(@COUNT>0)
+BEGIN
+	IF(@COUNT =16)
+		BEGIN
+			BREAK;
+		END
+	ELSE
+		BEGIN 
+			SELECT @COUNT AS THISCOUNTER
+			SET @COUNT = @COUNT + 1
+			CONTINUE;
+		END
+END
+--CASE CONDIOTIONS
+SELECT *,Gender = CASE Gender
+						WHEN 'M' THEN 'MALE'
+						WHEN 'F' THEN 'FEMALE'
+						ELSE 'N/A'
+					END
+FROM Employees
+--CASE WITH GROUP CONDITIONS
+SELECT * FROM Employees
+ORDER BY
+	CASE Gender
+	WHEN 'M' THEN Gender END DESC,
+	CASE WHEN Gender = 'F' THEN EmployeeFname
+	ELSE EmployeeLname END ASC
+
+

@@ -1,0 +1,28 @@
+﻿.anchor__image {
+    text-align:center;
+}
+.log{
+    background-color:gold;
+}
+.gol{
+    background-color:azure;
+}
+.info{
+    text-align:center;
+}
+.field {
+    border: 1px solid rgb(128, 128, 128);
+    width: 400px;
+    float: left;
+}
+.form21 {
+    border: 1px solid rgb(255,232,57);
+    width: 400px;
+    margin: auto;
+}
+.dialogbox{
+    padding-top:20px;
+}
+p{
+    font-size:20px;
+}

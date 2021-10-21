@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DGIT9", "DGIT9\DGIT9.csproj", "{A7F8EB0A-48AF-4B6A-9D74-7C2FF9FD3116}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7F8EB0A-48AF-4B6A-9D74-7C2FF9FD3116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7F8EB0A-48AF-4B6A-9D74-7C2FF9FD3116}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7F8EB0A-48AF-4B6A-9D74-7C2FF9FD3116}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7F8EB0A-48AF-4B6A-9D74-7C2FF9FD3116}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8140DD44-16B7-4DB5-99BF-4F9F72DAB2D3}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DGIT9.Models.ChangesData>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RepoId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ObjectId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Url)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Path)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Chnagetype)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AutoId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RepoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ObjectId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Path)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Chnagetype)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AutoId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CommitId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CommitId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CommitId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
